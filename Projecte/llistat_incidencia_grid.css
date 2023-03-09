@@ -1,0 +1,117 @@
+
+/*Títol*/
+
+h1{
+    background-color: black;
+    color:white;
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 8px;
+}
+
+h1>span{
+    font-size: 2rem;
+}
+
+/*taula incidencies*/
+
+a {
+    text-decoration: none;  
+    color: inherit;
+}
+
+.incidencia, .capçal{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 'aula inici identificador'
+                'descripcio descripcio descripcio';
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+    border:solid grey 1px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.incidencia:nth-child(odd){
+    background-color: rgb(221, 221, 221);
+}
+
+.incidencia .descripcio p{
+    text-align: justify;
+}
+
+.incidencia{
+    border-radius: 10px;
+}
+
+.capçal{
+    background-color: rgb(63, 63, 63);
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+.id{
+    grid-area: identificador;
+}
+
+.inici{
+    grid-area: inici;
+}
+
+.aula{
+    grid-area: aula;
+}
+
+.descripcio{
+    grid-area: descripcio;
+}
+
+@media only screen and (min-width:708px){
+    /*Títol*/
+    h1{
+        text-align: center;
+        font-size: 2.5rem;
+        letter-spacing: 15px;
+    }
+    
+    h1>span{
+        font-size: 3.5rem;
+    }
+
+    /*taula incidencies*/
+
+    .incidencia, .capçal{
+        grid-template-columns: 3em 5em 5fr 7em;
+        grid-template-areas: 'identificador aula descripcio inici';
+        max-width: 80%;
+        margin-bottom: 0;
+        border-radius: 0;
+        border-collapse: collapse;
+    }
+
+    .incidencia:hover{
+        background-color: burlywood;
+    }
+
+    .incidencia div, .capçal div{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
+    p{
+        margin-bottom: 5px;
+        margin-top: 5px;
+        font-size: 1.2rem;
+    }
+
+    .llistat{
+        margin-bottom: 70px;
+    }
+}
+
