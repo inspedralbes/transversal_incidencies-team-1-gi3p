@@ -32,13 +32,13 @@ $sentencia->execute();
 <?php include("header.php")?>
 
 <div class="px-4 py-5 my-5 text-center">
-    <img class="d-block mx-auto mb-4" src="" alt="" width="72" height="57">
+    <img class="d-block mx-auto mb-4" src="https://img.freepik.com/vector-premium/actualizar-icono-sistema-proceso-carga-actualizar-software-o-icono-progreso-aplicacion-vector-sobre-fondo-blanco-aislado-eps-10_399089-2838.jpg?w=2000" alt="" width="150" height="140">
     <h1 class="display-5 fw-bold">Incidencia registrada</h1>
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4"><?php printf("La teva ID és %d", $mysqli->insert_id)?></p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <a class="btn btn-primary" href="index.php" role="button">Inici</a>
-        <a href="llistat_incidencia_grid.php" class="btn btn-outline-secondary btn-lg px-4">Incidencies</a>
+        <a href="llistat_incidencia_grid.php" class="btn btn-primary btn-lg px-4">Inici</a>
+        <a href="llistat_incidencia_grid.php" class="btn btn-success btn-lg px-4">Incidencies</a>
       </div>
     </div>
   </div>
