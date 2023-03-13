@@ -16,24 +16,21 @@ $departaments = $resultat->fetch_all(MYSQLI_ASSOC);
 </head>
 <body>
 <?php include("header.php")?>
-    <h1>Insertar</h1>
-
-    <form action="insertar_BDD.php" method="POST">
-        <div class="aula">
-            <h3>aula</h3>
-                <select name="aula" id="aula" required>
-                    <?php foreach ($departaments as $unDepartament) { ?>
-                    <option value="<?php echo $unDepartament["idDept"]?>"><?php echo $unDepartament["nom"] ?></option>
-                    <?php } ?>
+    
+    <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-5 fw-bold">Insertar</h1>
+        <form action="insertar_BDD.php" method="POST"  class="row g-3">
+            <label>Aula</label>
+                <select class="form-select" name="aula" id="aula" required>
+                     <?php foreach ($departaments as $unDepartament) { ?>
+                     <option value="<?php echo $unDepartament["idDept"]?>"><?php echo $unDepartament["nom"] ?></option>
+                     <?php } ?>
                 </select>
-        </div>
-        <div class="descripcio">
-            <label for="descripcio">Descripció: </label>
-            <input placeholder="Escriu la descripció aquí" type="text" name="descripcio" required>
-        </div>
-        
-        <input type="submit" value="Envia" class="submit">
-    </form>
+            <label for="descripcio">Descripció</label>
+            <input class="form-control" placeholder="Escriu la descripció aquí" type="text" name="descripcio" required>
+            <input class="btn btn-primary" type="submit" value="Envia">
+        </form>
+    </div>
     <?php include("footer.php")?>
 </body>
 </html>
