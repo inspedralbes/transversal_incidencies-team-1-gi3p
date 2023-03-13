@@ -4,38 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="llistat_incidencia_grid.css">
-    <title>LlistatGrid</title>
+    <?php include("includes.php")?>
+    <link rel="stylesheet" href="stylesgrid.css">
+    <link rel="insti icon" href="https://www.institutpedralbes.cat/wp-content/uploads/2021/05/logo.jpg">
+    <title>Gestió incidències</title>
 </head>
 <body>
-    <header>
-        <h1>
-            <span>I</span>NCIDÈNCIES
-        </h1>
-    </header>
-    <h2><a href="index.php">Index</a></h2>
+<?php include("header.php")?>
 
     <?php $incidencies = include_once "select_incidencia.php"; ?>
 
-    <div class="llistat">
-        <div class="capçal">
-            <div class="identificador"><p>ID</p></div>
-            <div class="aula"><p>Aula</p></div>
-            <div class="descripcio"><p>Descripció</p></div>
-            <div class="inici"><p>Data Inici</p></div>
+    <div class="container">
+        <div class="titulos">
+            <div class="id"><h3>@ID</h3></div>
+            <div class="aula"><h3>Aula</h3></div>
+            <div class="descripcion"><h3>Descripció</h3></div>
+            <div class="fecha"><h3>Data inici</h3></div>
         </div>
-        <div class="incidencies">
+        <div class="cajaIncidencias">
             <?php foreach ($incidencies as $unaIncidencia) { ?>
+                <div class="editar">
                 <a href="modificar_incidencia.php?id=<?php echo $unaIncidencia["idInc"] ?>">
                     <div class="incidencia">
-                        <div class="identificador"><p><?php echo $unaIncidencia["idInc"] ?></p></div>
+                        <div class="id"><p><?php echo $unaIncidencia["idInc"] ?></p></div>
                         <div class="aula"><p><?php echo $unaIncidencia["aula"] ?></p></div>
-                        <div class="descripcio"><p><?php echo $unaIncidencia["descripcio"] ?></p></div>
-                        <div class="inici"><p><?php echo $unaIncidencia["dataIni"] ?></p></div>
+                        <div class="descripcion"><p><?php echo $unaIncidencia["descripcio"] ?></p></div>
+                        <div class="fecha"><p><?php echo $unaIncidencia["dataIni"] ?></p></div>
                     </div>
                 </a>
-            <?php } ?>
+                </div>
+            <?php } ?>                            
         </div>
     </div>
+<?php include("footer.php")?>
 </body>
 </html>
+
+

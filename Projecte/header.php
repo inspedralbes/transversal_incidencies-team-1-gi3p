@@ -5,10 +5,10 @@
       </a>
 
       <ul class="nav nav-pills">
-        <li class="nav-item"><a href="index.php" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+        <li class="nav-item"><a href="index.php" class="nav-link active" aria-current="page">Inici</a></li>
+        <li class="nav-item"><a href="llistat_incidencia_grid.php" class="nav-link">Incidències</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Actuacions</a></li>
         <li class="nav-item"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="nav-link">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="gestionar_incidencia.php" class="nav-link">Gestionar</a></li>
       </ul>
     </header>

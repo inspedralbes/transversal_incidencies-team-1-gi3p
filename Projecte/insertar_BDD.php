@@ -16,4 +16,4 @@ VALUES
 (?, ?)");
 $sentencia->bind_param("ss", $aula, $descripcio);
 $sentencia->execute();
-header("Location: llistat_incidencia_grid.php");
+header("Location: mostrar_id.php");
