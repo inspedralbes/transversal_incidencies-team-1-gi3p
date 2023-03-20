@@ -12,8 +12,8 @@
 <?php include("header.php")?>
     <div class="px-4 py-5 my-5 text-center">
         <h1 class="display-5 fw-bold py-5">G1 GI3Pedralbes</h1>
-        <a href="insertar_incidencia.php">Insertar incidència</a>
-        <a href="consultar_incidencia.php">Consultar incidencia per ID</a>
+        <a href="insertar_incidencia.php" class="btn btn-primary btn-lg px-4">Insertar incidència</a>
+        <a href="consultar_incidencia.php" class="btn btn-primary btn-lg px-4">Consultar incidencia per ID</a>
     </div>
 <?php include("footer.php")?>
 </body>
