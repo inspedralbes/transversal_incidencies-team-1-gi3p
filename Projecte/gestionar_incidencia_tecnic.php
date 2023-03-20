@@ -25,59 +25,69 @@
     <?php include("header.php")?>
 
     <div class="px-4 py-5 my-5 text-center">
-        <h1 class="display-5 fw-bold">Gestionar Incidència Tècnic</h1>
         <div class="col-lg-6 mx-auto">
             <?php 
             if(isset($_GET["id"])) { ?>
-                <div class="mb-3">
-                    <label for="floatingInput" class="form-label">Identificador</label>
-                    <input type="text" class="form-control rounded-3" id="floatingInput" disabled value="<?php echo $incidencia["idInc"]?>">
-                </div>
-                <div class="mb-3">
-                    <label for="floatingInput" class="form-label">Prioritat</label>
-                    <input type="text" class="form-control rounded-3" id="floatingInput" disabled value="<?php echo $incidencia["prioritat"]?>">
-                </div>
-                <div class="mb-3">
-                    <label for="floatingInput" class="form-label">Departament</label>
-                    <input type="text" class="form-control rounded-3" id="floatingInput" disabled value="<?php echo $incidencia["aula"]?>">
-                </div>
-                <div class="mb-3">
-                    <label for="floatingInput" class="form-label">Descripció</label>
-                    <textarea type="text" class="form-control rounded-3" id="floatingInput" rows="6" disabled><?php echo $incidencia["descripcio"]?></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="floatingInput" class="form-label">Data creació</label>
-                    <input type="text" class="form-control rounded-3" id="floatingInput" disabled value="<?php echo $incidencia["dataIni"]?>">
-                </div>
-                <div class="mb-3">
-                    <label for="floatingInput" class="form-label">Tipologia</label>
-                    <input type="text" class="form-control rounded-3" id="floatingInput" disabled value="<?php echo $incidencia["tipologia"]?>">
-                </div>
-                <div class="accordion mb-4">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#actuacions" aria-expanded="false" aria-controls="collapseOne">
-                                Actuacions
-                            </button>
-                        </h2>
-                        <div id="actuacions" class="accordion-collapse collapse" aria-labelledby="headingOne">
-                            <div class="accordion-body">
-                                <?php foreach ($actuaciones as $actuacion) { ?>
-                                    <div class="card text-center mb-3">
-                                        <div class="card-header">
-                                            Temps: <?php echo $actuacion["temps"]?> minuts
-                                        </div>
-                                        <div class="card-body">
-                                            <p class="card-text"><?php echo $actuacion["descripcio"]?></p>
-                                        </div>
-                                        <div class="card-footer text-muted">
-                                            <?php echo $actuacion["data"]?>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            </div>
+
+            <form>
+                <div class="card my-5">
+                    <div class="card-header bg-success-subtle">
+                        <h3>Registre d'actuacions </h3>
+                    </div>
+                    <div class="card-body">
+                    <div class="row my-3">
+                        <div class="col">
+                            <input type="text" class="form-control text-center" value="Identificador: <?php echo $incidencia["idInc"]?>" disabled >
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control text-center" value="Departament: <?php echo $incidencia["aula"]?>" disabled >
                         </div>
                     </div>
+                    <div class="row my-3">
+                        <div class="col">
+                            <input type="text" class="form-control text-center" value="Prioritat: <?php echo $incidencia["prioritat"]?>" disabled>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control text-center" value="Tipologia: <?php echo $incidencia["tipologia"]?>" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col my-2 mx-5">
+                            <input type="text" class="form-control text-center" value="Descripció: <?php echo $incidencia["descripcio"]?>" disabled >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col my-2 mx-5">
+                            <input type="text" class="form-control text-center" value="Data inici: <?php echo $incidencia["dataIni"]?>" disabled >
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+            <div class="accordion mb-4">
+            <?php 
+                if(!$actuaciones) { ?>
+                    <p class="blockquote my-5">No existeix cap actuació amb aquest ID!</p>
+                    <?php } else { ?>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Temps</th>
+                                <th scope="col">Descripció</th>
+                                <th scope="col">Data</th>
+                            </tr>  
+                        </thead>
+                        <?php foreach ($actuaciones as $actuacion) { ?> 
+                        <tbody>                                  
+                            <tr>                      
+                                <td><p><?php echo $actuacion["temps"]?> minuts</p></td>
+                                <td><p><?php echo $actuacion["descripcio"]?></p></td>
+                                <td><p><?php echo $actuacion["data"] ?></p></td>
+                            </tr>
+                        </tbody>
+                        <?php }}?>
+                    </table>
                 </div>
                 <div class="row">
                     <div class="col">
@@ -97,25 +107,32 @@
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar actuació</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="insertar_actuacio.php" method="POST">
+                                <form name="actuacio" id="nerModalForm" action="insertar_actuacio.php" method="POST">
                                     <div class="modal-body">
                                     
                                         <p><label for="descripcio">Descripció: </label>
                                         <input type="text" name="descripcio" id="descripcio"></p>
 
+                                        <p id="errDesc"></p>
+
                                         <p><label for="temps">Temps trigat (m): </label>
                                         <input type="number" name="temps" id="temps"></p>
 
+                                        <p id="errTemps"></p>
+
                                         <div class="form-check form-switch">
+                                            <label class="form-check-label" for="flexSwitchCheckDefault">visible?</label>
                                             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="visible">
-                                            <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                                            
                                         </div>
+
+                                        
 
                                         <input type="hidden" name="incidencia" value="<?php echo $_GET["id"] ?>">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <input type="submit" value="Enviar" class="btn btn-primary">
+                                        <button type="button" class="btn btn-secondary" onclick="validarLlargada()">Enviar</button>
                                     </div>
                                 </form>
                                 </div>
@@ -129,5 +146,27 @@
     </div>
 
     <?php include("footer.php")?>
+    <script>
+        function validarLlargada(){
+            
+            const desc = document.getElementById('descripcio').value;
+            const temps = document.getElementById('temps').value;
+            if (desc.length < 20){
+                document.getElementById("errDesc").innerHTML = "La descripció ha de tenir com a mínim 20 caràcters";
+            } else {
+                document.getElementById("errDesc").innerHTML = ""
+            }
+            if (temps == "") {
+                document.getElementById("errTemps").innerHTML = "Introdueix el temps que va trigar l'actuació";
+            }else{
+                document.getElementById("errTemps").innerHTML = ""
+            }
+            if (desc.length >= 20 && temps != "") {
+                document.actuacio.submit();
+            }
+        }
+
+    </script>
+
 </body>
 </html>
