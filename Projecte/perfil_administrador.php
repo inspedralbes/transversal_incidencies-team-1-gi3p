@@ -15,7 +15,7 @@
     <h1 class="display-5 fw-bold my-4">Menú Administradors</h1>
     <div class="col-lg-6 mx-auto">
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <a href="llistat_incidencia_grid.php" class="btn btn-primary btn-lg px-4 mx-3">Insertar incidencia</a>
+        <a href="llistat_incidencia_grid.php" class="btn btn-primary btn-lg px-4 mx-3">Llistat incidències</a>
         <a href="#" class="btn btn-success btn-lg px-4 mx-3">NULL</a>
       </div>
     </div>

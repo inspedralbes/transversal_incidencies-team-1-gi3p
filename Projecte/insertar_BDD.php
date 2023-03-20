@@ -37,8 +37,7 @@ $sentencia->execute();
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4"><?php printf("La teva ID és %d", $mysqli->insert_id)?></p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <a href="llistat_incidencia_grid.php" class="btn btn-primary btn-lg px-4">Inici</a>
-        <a href="llistat_incidencia_grid.php" class="btn btn-success btn-lg px-4">Incidencies</a>
+        <a href="index.php" class="btn btn-primary btn-lg px-4">Inici</a>
       </div>
     </div>
   </div>
