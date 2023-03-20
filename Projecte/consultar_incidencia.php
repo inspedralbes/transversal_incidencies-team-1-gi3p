@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="insti icon" href="https://www.institutpedralbes.cat/wp-content/uploads/2021/05/logo.jpg">
     <?php include("includes.php")?>
+    <link rel="stylesheet" href="stylegrid.css">
     <title>GI3Pedralbes</title>
 </head>
     <body>
@@ -51,53 +52,50 @@
                     <?php } else { ?>
                         <form action="tancar_incidencia_BBDD.php?id=<?php echo $id ?>" method="POST">
                             <div class="card my-5">
-                                <div class="card-header">
+                                <div class="card-header bg-success-subtle">
                                     <h3>Descripció:</h3> <?php echo $incidencia["descripcio"]?>
                                 </div>
                                 <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" class="form-control" value="Departament: <?php echo $incidencia["aula"]?>" disabled >
+                                        <input type="text" class="form-control text-center" value="Departament: <?php echo $incidencia["aula"]?>" disabled >
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" value="Prioritat: <?php echo $incidencia["prioritat"]?>" disabled>
+                                        <input type="text" class="form-control text-center" value="Prioritat: <?php echo $incidencia["prioritat"]?>" disabled>
                                     </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" value="Data inici: <?php echo $incidencia["dataIni"]?>" disabled >
+                                    <div class="col my-2 mx-5">
+                                        <input type="text" class="form-control text-center" value="Data inici: <?php echo $incidencia["dataIni"]?>" disabled >
                                     </div>
                                 </div>
                             </div>
                         </form>
-                        <div class="accordion mb-4">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#actuacions" aria-expanded="false" aria-controls="collapseOne">
-                                            Actuacions
-                                        </button>
-                                    </h2>
-                                    <div id="actuacions" class="accordion-collapse collapse" aria-labelledby="headingOne">
-                                        <div class="accordion-body">
-                                            <?php foreach ($actuacions as $actuacion) { ?>
-                                                <div class="card text-center mb-3">
-                                                    <div class="card-header">
-                                                        Temps: <?php echo $actuacion["temps"]?> minuts
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <p class="card-text"><?php echo $actuacion["descripcio"]?></p>
-                                                    </div>
-                                                    <div class="card-footer text-muted">
-                                                        <?php echo $actuacion["data"]?>
-                                                    </div>
-                                                </div>
-                                            <?php } ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
-                <?php } }?>
+                        <?php 
+                        if(!$actuacions) { ?>
+                                <p class="blockquote my-5">No existeix cap actuacio en aquesta incidència</p>
+                                <?php } else { ?>
+                        <?php foreach ($actuacions as $actuacion) { ?>
+                            
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Temps</th>
+                                        <th scope="col">Descripció</th>
+                                        <th scope="col">Data</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><p><?php echo $actuacion["temps"]?> minuts</p></td>
+                                        <td><p><?php echo $actuacion["descripcio"]?></p></td>
+                                        <td><p><?php echo $actuacion["data"] ?></p></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        <?php include("footer.php")?>
+                <?php }}}}?>
             </div>
         </div>
         <?php include("footer.php")?>
