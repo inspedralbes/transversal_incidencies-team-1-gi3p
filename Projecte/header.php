@@ -5,19 +5,17 @@
       </a>
 
       <ul class="nav nav-pills">
-        <li class="nav-item"><a href="index.php" class="nav-link active" aria-current="page">Inici</a></li>
-        <li class="nav-item"><a href="perfil_professor.php" class="nav-link ">Professors</a></li>
-        <li class="nav-item"><a href="perfil_administrador.php" class="nav-link">Administradors</a></li>
-        <li class="nav-item"><a href="llistat_tecnics.php" class="nav-link">Tècnics</a></li>
-        <li class="nav-item"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="nav-link">FAQs</a></li>
+        <li class="nav-item"><a href="log_in.php" class="nav-link active bg-warning text-dark" aria-current="page">Iniciar sessió</a></li>
+        <li class="nav-item"><a href="index.php" class="nav-link">Inici</a></li>
+        <li class="nav-item"><a href="insertar_incidencia.php" class="nav-link">Insertar incidència</a></li>
+        <li class="nav-item"><a href="consultar_incidencia.php" class="nav-link ">Consultar incidència</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Més 
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Actuacions</a></li>
-            <li><a class="dropdown-item" href="consultar_incidencia.php">Consultar incidencia</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="perfil_administrador.php">Administrador</a></li>
+            <li><a class="dropdown-item" href="llistat_tecnics.php">Tècnic</a></li>
           </ul>
         </li>
       </ul>
