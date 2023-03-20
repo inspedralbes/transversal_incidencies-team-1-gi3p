@@ -6,17 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="insti icon" href="https://www.institutpedralbes.cat/wp-content/uploads/2021/05/logo.jpg">
     <?php include("includes.php")?>
-    <title>GI3Pedralbes PHP</title>
+    <title>GI3Pedralbes</title>
 </head>
-<body>
+<body class="h-100">
 <?php include("header.php")?>
     <div class="px-4 py-5 my-5 text-center">
-        <h1 class="display-5 fw-bold">G1 GI3Pedralbes</h1>
+        <h1 class="display-5 fw-bold py-5">G1 GI3Pedralbes</h1>
         <a href="insertar_incidencia.php">Insertar incidència</a>
-        <a href="llistat_incidencia_grid.php">Llistat incidència</a>
-        <a href="gestionar_incidencia.php">Gestionar Incidència</a>
+        <a href="consultar_incidencia.php">Consultar incidencia per ID</a>
     </div>
 <?php include("footer.php")?>
 </body>
 </html>
-

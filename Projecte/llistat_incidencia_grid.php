@@ -17,7 +17,7 @@
     <div class="container">
         <div class="titulos">
             <div class="id"><h3>@ID</h3></div>
-            <div class="aula"><h3>Aula</h3></div>
+            <div class="aula"><h3>Dept.</h3></div>
             <div class="descripcion"><h3>Descripció</h3></div>
             <div class="fecha"><h3>Data inici</h3></div>
         </div>

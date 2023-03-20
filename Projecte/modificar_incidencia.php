@@ -1,7 +1,7 @@
 <?php
 $mysqli = include_once "connexio.php";
 $id = $_GET["id"];
-$sentencia = $mysqli->prepare("SELECT idInc, aula, descripcio, dataIni FROM INCIDENCIA WHERE idInc = ?");
+$sentencia = $mysqli->prepare("SELECT idInc, aula, descripcio, dataIni, tecnic, tipologia, prioritat FROM INCIDENCIA WHERE idInc = ?");
 $sentencia->bind_param("i", $id);
 $sentencia->execute();
 $resultado = $sentencia->get_result();
@@ -16,7 +16,6 @@ $tecnics = $resultatTecnic->fetch_all(MYSQLI_ASSOC);
 
 $resultatTipus = $mysqli->query("SELECT idTipo, nom FROM TIPOLOGIA");
 $tipus = $resultatTipus->fetch_all(MYSQLI_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
@@ -31,41 +30,52 @@ $tipus = $resultatTipus->fetch_all(MYSQLI_ASSOC);
 </head>
 <body>
 <?php include("header.php")?>
-    <h1>Modificar incidència</h1>
 
-    <form action="update.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo $incidencia["idInc"]?>">
-        <div class="aula">
-            <h3>Aula</h3>
+<div class="px-4 py-5 my-5 mx-5 text-center">
+    <div class=" col-lg-6 mx-auto">
+        <h1 class="display-5 fw-bold">Modificar incidència</h1>
+        <form action="update.php" method="POST" class="row g-3">
+            <input type="hidden" name="id" value="<?php echo $incidencia["idInc"]?>">
+            
+            <label class="form-label">Departament</label>
             <input type="text" name="aula" id="aula" value="<?php echo $incidencia["aula"]?>" readonly>
-        </div>
-        <div class="descripcio">
-            <h3>Descripció</h3>
-            <textarea name="desc" id="desc" cols="30" rows="10" readonly><?php echo $incidencia["descripcio"]?></textarea>
-        </div>
-        <div class="tecnic">
-            <h3>Tècnic</h3>
-            <?php foreach ($tecnics as $untecnic) {?>
-            <p><input type="radio" name="tecnic" id="<?php echo $untecnic["nom"]?>" value="<?php echo $untecnic["idTecn"]?>"><label for="<?php echo $untecnic["nom"]?>"><?php echo $untecnic["nom"]?></label></p>
-            <?php } ?>
-
-        </div>
+            
+            <label class="form-label">Descripció</label>
+            <input class="form-control" name="desc" type="text" value="<?php echo $incidencia["descripcio"]?>" aria-label="readonly input example" readonly>
         
-        <div class="prioritat">
-            <h3>Prioritat</h3>
-            <input type="range" name="prioritat" id="prioritat" min="1" max="4" value="1">
-        </div>
+            <label class="form-label">Tècnic</label>
+                <div class="btn-group">
+                    <?php foreach ($tecnics as $untecnic) {
 
-        <div class="tipus">
-            <label for="tipus"><h3>Tipus: </h3></label>
-                <select name="tipus" id="tipus">
-                <?php foreach ($tipus as $untipus) {?>
-                    <option value="<?php echo $untipus["idTipo"]?>"><?php echo $untipus["nom"]?></option>
+                            ?>
+                            <input class="btn-check" type="radio" name="tecnic" id="<?php echo $untecnic["nom"]?>" value="<?php echo $untecnic["idTecn"]?>" <?php if($untecnic["idTecn"] == $incidencia["tecnic"]){ echo "checked";}?>>
+                            <label class="btn btn-outline-primary" for="<?php echo $untecnic["nom"]?>">
+                            <?php echo $untecnic["nom"]?>
+                            </label>
+
+                    <?php
+                    }?>
+                </div>
+
+            <label class="form-label">Prioritat</label>
+            <input class="form-range" type="range" name="prioritat" id="prioritat" min="1" max="4" value="<?php echo $incidencia["prioritat"]?>">
+            <label class="form-label">Tècnic</label>
+                <div class="btn-group">
+                    <?php foreach ($tipus as $untipus) {
+                        
+                            ?>
+                            <input class="btn-check" type="radio" name="tipus" id="<?php echo $untipus["nom"]?>" value="<?php echo $untipus["idTipo"]?>" <?php if($untipus["idTipo"] == $incidencia["tipologia"]){ echo "checked";}?>>
+                            <label class="btn btn-outline-primary" for="<?php echo $untipus["nom"]?>">
+                            <?php echo $untipus["nom"]?>
+                            </label>
+
+
                     <?php } ?>
-                </select>
-        </div>
-        <input type="submit" value="Guardar">
-    </form>
-    <?php include("footer.php")?>
+                </div>
+            <input class="btn btn-primary" type="submit" value="Guardar">
+        </form>
+    </div>
+</div>
+<?php include("footer.php")?>
 </body>
 </html>

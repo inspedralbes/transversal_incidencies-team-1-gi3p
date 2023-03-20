@@ -6,6 +6,12 @@
     width: 80%;
     padding-bottom: 15px;
 }
+
+.container a {
+    text-decoration: none;
+    color: black;
+}
+
 .titulos, .incidencia {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -99,5 +105,4 @@ h3{
     .descripcion {    
         text-align: left;
     }
-
 }
