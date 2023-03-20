@@ -86,9 +86,41 @@
                         </form>
                     </div>
                     <div class="col">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#actuacioModal">
                             Registrar actuació
                         </button>
+
+                        <div class="modal fade" id="actuacioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar actuació</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="insertar_actuacio.php" method="POST">
+                                    <div class="modal-body">
+                                    
+                                        <p><label for="descripcio">Descripció: </label>
+                                        <input type="text" name="descripcio" id="descripcio"></p>
+
+                                        <p><label for="temps">Temps trigat (m): </label>
+                                        <input type="number" name="temps" id="temps"></p>
+
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="visible">
+                                            <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                                        </div>
+
+                                        <input type="hidden" name="incidencia" value="<?php echo $_GET["id"] ?>">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <input type="submit" value="Enviar" class="btn btn-primary">
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             <?php } 
