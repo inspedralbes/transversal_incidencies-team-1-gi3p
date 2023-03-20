@@ -25,47 +25,35 @@
     <?php include("header.php")?>
 
     <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-5 fw-bold">Gestionar Incidència Tècnic</h1>
         <div class="col-lg-6 mx-auto">
             <?php 
             if(isset($_GET["id"])) { ?>
-
-            <form>
-                <div class="card my-5">
-                    <div class="card-header bg-success-subtle">
-                        <h3>Registre d'actuacions </h3>
-                    </div>
-                    <div class="card-body">
-                    <div class="row my-3">
-                        <div class="col">
-                            <input type="text" class="form-control text-center" value="Identificador: <?php echo $incidencia["idInc"]?>" disabled >
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control text-center" value="Departament: <?php echo $incidencia["aula"]?>" disabled >
-                        </div>
-                    </div>
-                    <div class="row my-3">
-                        <div class="col">
-                            <input type="text" class="form-control text-center" value="Prioritat: <?php echo $incidencia["prioritat"]?>" disabled>
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control text-center" value="Tipologia: <?php echo $incidencia["tipologia"]?>" disabled>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col my-2 mx-5">
-                            <input type="text" class="form-control text-center" value="Descripció: <?php echo $incidencia["descripcio"]?>" disabled >
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col my-2 mx-5">
-                            <input type="text" class="form-control text-center" value="Data inici: <?php echo $incidencia["dataIni"]?>" disabled >
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <label for="floatingInput" class="form-label">Identificador</label>
+                    <input type="text" class="form-control rounded-3" id="floatingInput" disabled value="<?php echo $incidencia["idInc"]?>">
                 </div>
-            </form>
-        </div>
-        
-            <div class="accordion mb-4">
+                <div class="mb-3">
+                    <label for="floatingInput" class="form-label">Prioritat</label>
+                    <input type="text" class="form-control rounded-3" id="floatingInput" disabled value="<?php echo $incidencia["prioritat"]?>">
+                </div>
+                <div class="mb-3">
+                    <label for="floatingInput" class="form-label">Departament</label>
+                    <input type="text" class="form-control rounded-3" id="floatingInput" disabled value="<?php echo $incidencia["aula"]?>">
+                </div>
+                <div class="mb-3">
+                    <label for="floatingInput" class="form-label">Descripció</label>
+                    <textarea type="text" class="form-control rounded-3" id="floatingInput" rows="6" disabled><?php echo $incidencia["descripcio"]?></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="floatingInput" class="form-label">Data creació</label>
+                    <input type="text" class="form-control rounded-3" id="floatingInput" disabled value="<?php echo $incidencia["dataIni"]?>">
+                </div>
+                <div class="mb-3">
+                    <label for="floatingInput" class="form-label">Tipologia</label>
+                    <input type="text" class="form-control rounded-3" id="floatingInput" disabled value="<?php echo $incidencia["tipologia"]?>">
+                </div>
+                <div class="accordion mb-4">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#actuacions" aria-expanded="false" aria-controls="collapseOne">
@@ -98,9 +86,41 @@
                         </form>
                     </div>
                     <div class="col">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#actuacioModal">
                             Registrar actuació
                         </button>
+
+                        <div class="modal fade" id="actuacioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar actuació</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="insertar_actuacio.php" method="POST">
+                                    <div class="modal-body">
+                                    
+                                        <p><label for="descripcio">Descripció: </label>
+                                        <input type="text" name="descripcio" id="descripcio"></p>
+
+                                        <p><label for="temps">Temps trigat (m): </label>
+                                        <input type="number" name="temps" id="temps"></p>
+
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="visible">
+                                            <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                                        </div>
+
+                                        <input type="hidden" name="incidencia" value="<?php echo $_GET["id"] ?>">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <input type="submit" value="Enviar" class="btn btn-primary">
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             <?php } 
