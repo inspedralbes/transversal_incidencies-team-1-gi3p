@@ -19,7 +19,7 @@ $tipus = $resultatTipus->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,16 +33,14 @@ $tipus = $resultatTipus->fetch_all(MYSQLI_ASSOC);
 
 <div class="px-4 py-5 my-5 mx-5 text-center">
     <div class=" col-lg-6 mx-auto">
-        <h1 class="display-5 fw-bold">Modificar incidència</h1>
+        <h1 class="display-5 fw-bold my-4">Modificar incidència</h1>
         <form action="update.php" method="POST" class="row g-3">
             <input type="hidden" name="id" value="<?php echo $incidencia["idInc"]?>">
+
+            <span class="input-group-text text-center" name="aula" id="aula" value="<?php echo $incidencia["aula"]?>"> <strong>Departament: &#160;</strong><?php echo $incidencia["aula"]?></span>
             
-            <label class="form-label">Departament</label>
-            <input type="text" name="aula" id="aula" value="<?php echo $incidencia["aula"]?>" readonly>
-            
-            <label class="form-label">Descripció</label>
-            <input class="form-control" name="desc" type="text" value="<?php echo $incidencia["descripcio"]?>" aria-label="readonly input example" readonly>
-        
+            <span class="input-group-text text-center" name="aula" id="aula" value="<?php echo $incidencia["descripcio"]?>"> <strong>Descripció: &#160;</strong><?php echo $incidencia["descripcio"]?></span>
+
             <label class="form-label">Tècnic</label>
                 <div class="btn-group">
                     <?php foreach ($tecnics as $untecnic) {
@@ -59,7 +57,7 @@ $tipus = $resultatTipus->fetch_all(MYSQLI_ASSOC);
 
             <label class="form-label">Prioritat</label>
             <input class="form-range" type="range" name="prioritat" id="prioritat" min="1" max="4" value="<?php echo $incidencia["prioritat"]?>">
-            <label class="form-label">Tècnic</label>
+            <label class="form-label">Tipologia</label>
                 <div class="btn-group">
                     <?php foreach ($tipus as $untipus) {
                         

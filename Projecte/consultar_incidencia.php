@@ -59,7 +59,19 @@
                                         <input type="text" class="form-control text-center" value="Departament: <?php echo $incidencia["aula"]?>" disabled >
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control text-center" value="Prioritat: <?php echo $incidencia["prioritat"]?>" disabled>
+                                        <?php
+                                            if($incidencia["prioritat"] == 1) {
+                                                ?><input type="text" class="form-control text-center" value="Prioritat: <?php echo $incidencia["prioritat"]?>" disabled><?php
+                                            } else if ($incidencia["prioritat"] == 2) {
+                                                ?><input type="text" class="form-control text-center" value="Prioritat: <?php echo $incidencia["prioritat"]?>" disabled><?php
+                                            } else if ($incidencia["prioritat"] == 3) {
+                                                ?><input type="text" class="form-control text-center" value="Prioritat: <?php echo $incidencia["prioritat"]?>" disabled><?php
+                                            } else if ($incidencia["prioritat"] == 4) {
+                                                ?><input type="text" class="form-control text-center" value="Prioritat: <?php echo $incidencia["prioritat"]?>" disabled><?php
+                                            } else {
+                                                ?><input type="text" class="form-control text-center" value="Prioritat: N/A" disabled><?php
+                                            }
+                                        ?>
                                     </div>
                                     </div>
                                 </div>
@@ -92,8 +104,6 @@
                                     <?php }}}}?>
                                 </table>
                         </form>
-                         
-                
             </div>
         </div>
         <?php include("footer.php")?>
