@@ -20,20 +20,46 @@ $departaments = $resultat->fetch_all(MYSQLI_ASSOC);
     <div class="px-4 py-5 my-5 mx-5 text-center">
         <div class=" col-lg-6 mx-auto">
         <h1 class="display-5 fw-bold">Insertar</h1>
-        <form action="insertar_BDD.php" method="POST"  class="row g-3">
-            <label>Departament</label>
+        <form action="insertar_BDD.php" method="POST" class="row g-3 needs-validation" novalidate>
+            <div>
+                <label class="form-label">Departament</label>
                 <select class="form-select" name="aula" id="aula" required>
                     <option value="">Escull l'aula</option>
-                     <?php foreach ($departaments as $unDepartament) { ?>
-                     <option value="<?php echo $unDepartament["idDept"]?>"><?php echo $unDepartament["nom"] ?></option>
-                     <?php } ?>
+                        <?php foreach ($departaments as $unDepartament) { ?>
+                        <option value="<?php echo $unDepartament["idDept"]?>"><?php echo $unDepartament["nom"] ?></option>
+                        <?php } ?>
                 </select>
-            <label for="descripcio">Descripció</label>
-            <input class="form-control" id="descripcio" placeholder="Escriu la descripció aquí" type="text" name="descripcio" required>
+                <div class="invalid-feedback">
+                    Selecciona una aula.
+                </div>
+            </div>
+            <div>
+                <label for="descripcio" class="form-label">Descripció</label>
+                <input class="form-select" id="descripcio" placeholder="Escriu la descripció aquí" type="text" required name="descripcio">
+                <div class="invalid-feedback">
+                    Emplena el camp
+                </div>
+            </div>
             <input class="btn btn-primary" type="submit" value="Envia">
         </form>
         </div>        
     </div>
 <?php include("footer.php")?>
+
+<script>
+    (() => {
+        let form = document.querySelector(".needs-validation")
+        console.log(form)
+
+        form.addEventListener("submit", e => {
+            if(!form.checkValidity()) {
+                e.preventDefault()
+                e.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+        }, false)
+    })()
+</script>
 </body>
 </html>

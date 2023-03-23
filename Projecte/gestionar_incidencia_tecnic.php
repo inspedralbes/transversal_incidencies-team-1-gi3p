@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <link rel="insti icon" href="https://www.institutpedralbes.cat/wp-content/uploads/2021/05/logo.jpg">
+    <link rel="insti icon" href="https://www.institutpedralbes.cat/wp-content/uploads/2021/05/logo.jpg">    
     <?php include("includes.php")?>
     <title>GI3Pedralbes PHP</title>
 </head>
@@ -99,34 +100,35 @@
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#actuacioModal">
                             Registrar actuació
                         </button>
-
+                    </div>
                         <div class="modal fade" id="actuacioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar actuació</h1>
+                                    <h1 class="modal-title fs-5">Registrar actuació</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <form name="actuacio" id="nerModalForm" action="insertar_actuacio.php" method="POST">
                                     <div class="modal-body">
                                     
-                                        <p><label for="descripcio">Descripció: </label>
-                                        <input type="text" name="descripcio" id="descripcio"></p>
-
-                                        <p id="errDesc"></p>
-
-                                        <p><label for="temps">Temps trigat (m): </label>
-                                        <input type="number" name="temps" id="temps"></p>
-
-                                        <p id="errTemps"></p>
-
-                                        <div class="form-check form-switch">
-                                            <label class="form-check-label" for="flexSwitchCheckDefault">visible?</label>
-                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="visible">
-                                            
+                                        <div class="form-floating mb-1">
+                                            <input type="text" name="descripcio" id="descripcio" class="form-control" placeholder="Descripcio">
+                                            <label for="descripcio">Descripció</label>
                                         </div>
 
-                                        
+                                        <p id="errDesc" style="text-align: start" class="text-danger"></p>
+
+                                        <div class="form-floating mb-1">
+                                            <input type="number" name="temps" id="temps" class="form-control" placeholder="15">
+                                            <label for="temps">Temps trigat (min)</label>
+                                        </div>
+
+                                        <p id="errTemps" style="text-align: start" class="text-danger"></p>
+    
+                                        <div class="form-check form-switch" style="margin: 0 120px">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" name="visible" checked>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked">Visibilitat per a externs</label>
+                                        </div>
 
                                         <input type="hidden" name="incidencia" value="<?php echo $_GET["id"] ?>">
                                     </div>
@@ -138,7 +140,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    
                 </div>
             <?php } 
             ?>
@@ -149,19 +151,30 @@
     <script>
         function validarLlargada(){
             
-            const desc = document.getElementById('descripcio').value;
-            const temps = document.getElementById('temps').value;
-            if (desc.length < 20){
-                document.getElementById("errDesc").innerHTML = "La descripció ha de tenir com a mínim 20 caràcters";
+            const desc = document.getElementById('descripcio');
+            const temps = document.getElementById('temps');
+            let errorDesc = document.getElementById("errDesc"); 
+            let errorTemps = document.getElementById("errTemps"); 
+
+
+            if (desc.value.length < 20){
+                desc.classList.add("is-invalid")
+                errorDesc.innerHTML = "La descripció ha de tenir com a mínim 20 caràcters";
             } else {
-                document.getElementById("errDesc").innerHTML = ""
+                desc.classList.remove("is-invalid")
+                desc.classList.add("is-valid")
+                errorDesc.innerHTML = ""
             }
-            if (temps == "") {
-                document.getElementById("errTemps").innerHTML = "Introdueix el temps que va trigar l'actuació";
+
+            if (temps.value == "" || parseInt(temps.value) <= 0) {
+                temps.classList.add("is-invalid")
+                errorTemps.innerHTML = "Introdueix el temps que va trigar l'actuació";
             }else{
-                document.getElementById("errTemps").innerHTML = ""
+                temps.classList.remove("is-invalid")
+                temps.classList.add("is-valid")
+                errorTemps.innerHTML = ""
             }
-            if (desc.length >= 20 && temps != "") {
+            if (desc.value.length >= 20 && temps.value != "" && parseInt(temps.value) > 0) {
                 document.actuacio.submit();
             }
         }
