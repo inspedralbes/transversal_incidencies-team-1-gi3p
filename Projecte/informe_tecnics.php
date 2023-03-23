@@ -46,7 +46,13 @@ $tecnics = $resultat->fetch_all(MYSQLI_ASSOC);
                         <div class="col"><?php echo $unaIncidencia["descripcio"]?></div>
                         <div class="col"><?php echo $unaIncidencia["prioritat"]?></div>
                         <div class="col"><?php echo $unaIncidencia["DATA"]?></div>   
-                        <div class="col"><?php echo $unaIncidencia["temps"]?></div>        
+                        <div class="col"><?php 
+                          if(!$unaIncidencia["temps"]) {
+                            echo 0;
+                          } else {
+                            echo $unaIncidencia["temps"];
+                          }
+                        ?></div>        
                       </div>
                     <?php } ?>
                 </div>
@@ -54,6 +60,9 @@ $tecnics = $resultat->fetch_all(MYSQLI_ASSOC);
         </div>
       </div>
     <?php } ?>
+  </div>
+  <div class="my-5">
+        <a href="perfil_administrador.php" class="btn btn-outline-primary">Tornar al menú</a>
   </div>
 </div>
 
