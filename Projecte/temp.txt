@@ -4,16 +4,9 @@ Subir al GITHUB
 - gestionar incidencia tecnic OK
 
 
-
 Julie: modificar incidencia --> input no variables y poner colores a los campos no variables OK
        Descripcions cambiar a un textaria de 3 lineas OK
        gestionar incidencia tecnic: que ponga información de incidencia OK       
-
-SANTI: 
-    en los lugares que sale la prioridad usar colores para que sea visible para los usuarios
-    los range con indicadores
-
-
 
 EXTRA: 
     - Mejorar selects
