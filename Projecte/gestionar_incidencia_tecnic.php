@@ -33,7 +33,7 @@
             <form>
                 <div class="card my-5">
                     <div class="card-header bg-success-subtle">
-                        <h3>Informe d'incidència</h3>
+                        <h3>Informe d'incidència </h3>
                     </div>
                     <div class="card-body">
                     <div class="row my-3">
@@ -46,7 +46,19 @@
                     </div>
                     <div class="row my-3">
                         <div class="col">
-                            <input type="text" class="form-control text-center" value="Prioritat: <?php echo $incidencia["prioritat"]?>" disabled>
+                            <?php
+                                if($incidencia["prioritat"] == 1) {
+                                    ?><input type="text" class="form-control text-center" style="background-color: #d9f99d" value="Prioritat: Baixa" disabled><?php
+                                } else if ($incidencia["prioritat"] == 2) {
+                                    ?><input type="text" class="form-control text-center" style="background-color: #fef08a" value="Prioritat: Mitja" disabled><?php
+                                } else if ($incidencia["prioritat"] == 3) {
+                                    ?><input type="text" class="form-control text-center" style="background-color: #fed7aa" value="Prioritat: Alta" disabled><?php
+                                } else if ($incidencia["prioritat"] == 4) {
+                                    ?><input type="text" class="form-control text-center" style="background-color: #fecaca" value="Prioritat: Urgent" disabled><?php
+                                } else {
+                                    ?><input type="text" class="form-control text-center" value="Prioritat: N/A" disabled><?php
+                                }
+                            ?>
                         </div>
                         <div class="col">
                             <input type="text" class="form-control text-center" value="Tipologia: <?php echo $incidencia["tipologia"]?>" disabled>
@@ -65,13 +77,13 @@
                 </div>
             </form>
         </div>
-        
             <div class="accordion mb-4">
             <?php 
+            
                 if(!$actuaciones) { ?>
                     <p class="blockquote my-5">No existeix cap actuació amb aquest ID!</p>
                     <?php } else { ?>
-                    <h3>Registre d'actuacions</h3>
+                        <h3>Informe d'actuacions</h3>
                     <table class="table">
                         <thead>
                             <tr>
@@ -156,7 +168,6 @@
             const temps = document.getElementById('temps');
             let errorDesc = document.getElementById("errDesc"); 
             let errorTemps = document.getElementById("errTemps"); 
-
 
             if (desc.value.length < 20){
                 desc.classList.add("is-invalid")

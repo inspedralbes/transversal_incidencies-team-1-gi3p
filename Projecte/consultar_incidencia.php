@@ -61,13 +61,13 @@
                                     <div class="col">
                                         <?php
                                             if($incidencia["prioritat"] == 1) {
-                                                ?><input type="text" class="form-control text-center" value="Prioritat: <?php echo $incidencia["prioritat"]?>" disabled><?php
+                                                ?><input type="text" class="form-control text-center" style="background-color: #d9f99d" value="Prioritat: Baixa" disabled><?php
                                             } else if ($incidencia["prioritat"] == 2) {
-                                                ?><input type="text" class="form-control text-center" value="Prioritat: <?php echo $incidencia["prioritat"]?>" disabled><?php
+                                                ?><input type="text" class="form-control text-center" style="background-color: #fef08a" value="Prioritat: Mitja" disabled><?php
                                             } else if ($incidencia["prioritat"] == 3) {
-                                                ?><input type="text" class="form-control text-center" value="Prioritat: <?php echo $incidencia["prioritat"]?>" disabled><?php
+                                                ?><input type="text" class="form-control text-center" style="background-color: #fed7aa" value="Prioritat: Alta" disabled><?php
                                             } else if ($incidencia["prioritat"] == 4) {
-                                                ?><input type="text" class="form-control text-center" value="Prioritat: <?php echo $incidencia["prioritat"]?>" disabled><?php
+                                                ?><input type="text" class="form-control text-center" style="background-color: #fecaca" value="Prioritat: Urgent" disabled><?php
                                             } else {
                                                 ?><input type="text" class="form-control text-center" value="Prioritat: N/A" disabled><?php
                                             }
@@ -85,6 +85,7 @@
                                 if(!$actuacions) { ?>
                                 <p class="blockquote my-5">No existeix cap actuació amb aquest ID!</p>
                                 <?php } else { ?>
+                                    <h3>Informe d'actuacions</h3>
                                 <table class="table">
                                     <thead>
                                         <tr>
