@@ -37,9 +37,10 @@ $tipus = $resultatTipus->fetch_all(MYSQLI_ASSOC);
         <form action="update.php" method="POST" class="row g-3">
             <input type="hidden" name="id" value="<?php echo $incidencia["idInc"]?>">
 
-            <span class="input-group-text text-center" name="aula" id="aula" value="<?php echo $incidencia["aula"]?>"> <strong>Departament: &#160;</strong><?php echo $incidencia["aula"]?></span>
-            
-            <span class="input-group-text text-center" name="aula" id="aula" value="<?php echo $incidencia["descripcio"]?>"> <strong>Descripció: &#160;</strong><?php echo $incidencia["descripcio"]?></span>
+            <div class="row mx-auto my-4">
+                <span class="col mx-1 input-group-text" name="aula" id="aula" value="<?php echo $incidencia["aula"]?>"> <strong>Departament: &#160;</strong><?php echo $incidencia["aula"]?></span>
+                <span class="col mx-1 input-group-text" name="aula" id="aula" value="<?php echo $incidencia["descripcio"]?>"> <strong>Descripció: &#160;</strong><?php echo $incidencia["descripcio"]?></span>
+            </div>
 
             <label class="form-label">Tècnic</label>
                 <div class="btn-group">
