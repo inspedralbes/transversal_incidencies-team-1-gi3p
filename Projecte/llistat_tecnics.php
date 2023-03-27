@@ -1,3 +1,10 @@
+<?php session_start();
+
+$nomTecnic = $_SESSION["nom"];
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -12,15 +19,14 @@
 <?php include("header.php");
 
 $mysqli = include_once "connexio.php";
-$resultat = $mysqli->query("SELECT idTecn, nom FROM TECNIC;");
-$tecnics = $resultat->fetch_all(MYSQLI_ASSOC);
+$resultat = $mysqli->query("SELECT idTecn, nom FROM TECNIC WHERE nom = '$nomTecnic'");
+$untecnic = $resultat->fetch_assoc();
 
 ?>
 
 <div class="px-4 py-5 my-5 text-center">
   <h1 class="display-5 fw-bold py-5">Llistat Tècnics</h1>
   <div class="accordion" id="accordionExample">
-    <?php foreach ($tecnics as $untecnic) { ?>
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $untecnic["idTecn"] ?>" aria-expanded="false" aria-controls="collapseOne">
@@ -46,7 +52,6 @@ $tecnics = $resultat->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
       </div>
-    <?php } ?>
   </div>
 </div>
 
