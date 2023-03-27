@@ -6,6 +6,7 @@
 
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="log_in.php" class="nav-link active bg-warning text-dark" aria-current="page">Iniciar sessió</a></li>
+        <li class="nav-item"><a href="log_out.php" class="nav-link active bg-danger text-dark" aria-current="page">Tancar sessió</a></li>
         <li class="nav-item"><a href="index.php" class="nav-link">Inici</a></li>
         <li class="nav-item"><a href="insertar_incidencia.php" class="nav-link">Insertar incidència</a></li>
         <li class="nav-item"><a href="consultar_incidencia.php" class="nav-link ">Consultar incidència</a></li>
