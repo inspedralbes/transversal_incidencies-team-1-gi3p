@@ -37,28 +37,24 @@ $tipus = $resultatTipus->fetch_all(MYSQLI_ASSOC);
         <form action="update.php" method="POST" class="row g-3">
             <input type="hidden" name="id" value="<?php echo $incidencia["idInc"]?>">
 
-            <div class="row mx-auto my-4">
-                <span class="col mx-1 input-group-text bg-success-subtle" name="aula" id="aula" value="<?php echo $incidencia["aula"]?>"> <strong>Departament: &#160;</strong><?php echo $incidencia["aula"]?></span>
-                <span class="col mx-1 input-group-text bg-success-subtle" name="aula" id="aula" value="<?php echo $incidencia["descripcio"]?>"> <strong>Descripció: &#160;</strong><?php echo $incidencia["descripcio"]?></span>
-            </div>
+            <span class="input-group-text text-center" name="aula" id="aula" value="<?php echo $incidencia["aula"]?>"> <strong>Departament: &#160;</strong><?php echo $incidencia["aula"]?></span>
+            
+            <span class="input-group-text text-center" name="aula" id="aula" value="<?php echo $incidencia["descripcio"]?>"> <strong>Descripció: &#160;</strong><?php echo $incidencia["descripcio"]?></span>
 
             <label class="form-label">Tècnic</label>
-                <div class="btn-group">
-                    <?php foreach ($tecnics as $untecnic) {
-
-                            ?>
-                            <input class="btn-check" type="radio" name="tecnic" id="<?php echo $untecnic["nom"]?>" value="<?php echo $untecnic["idTecn"]?>" <?php if($untecnic["idTecn"] == $incidencia["tecnic"]){ echo "checked";}?>>
-                            <label class="btn btn-outline-primary" for="<?php echo $untecnic["nom"]?>">
-                            <?php echo $untecnic["nom"]?>
-                            </label>
-
-                    <?php
-                    }?>
-                </div>
-            <div>
-                <label class="form-label">Prioritat</label>
-                <input class="form-range" type="range" name="prioritat" id="prioritat" min="1" max="4" value="<?php echo $incidencia["prioritat"]?>">
+            <div class="btn-group">
+                <?php foreach ($tecnics as $untecnic) {
+                        ?>
+                        <input class="btn-check" type="radio" name="tecnic" id="<?php echo $untecnic["nom"]?>" value="<?php echo $untecnic["idTecn"]?>" <?php if($untecnic["idTecn"] == $incidencia["tecnic"]){ echo "checked";}?>>
+                        <label class="btn btn-outline-primary" for="<?php echo $untecnic["nom"]?>">
+                        <?php echo $untecnic["nom"]?>
+                        </label>
+                <?php
+                }?>
             </div>
+
+            <label class="form-label">Prioritat: <span id="valorPrioritat"></span></label>
+            <input class="form-range" type="range" name="prioritat" id="prioritat" min="1" max="4" value="<?php if(isset($incidencia["prioritat"])) { echo $incidencia["prioritat"]; }else { echo "0";}?>" onchange="mostrarPrioritat(this.value)" oninput="mostrarPrioritat(this.value)">
             <label class="form-label">Tipologia</label>
                 <div class="btn-group">
                     <?php foreach ($tipus as $untipus) {
@@ -77,5 +73,18 @@ $tipus = $resultatTipus->fetch_all(MYSQLI_ASSOC);
     </div>
 </div>
 <?php include("footer.php")?>
+
+<script>
+    let range = document.getElementById("valorPrioritat")
+    let valor = document.getElementById("prioritat")
+    range.innerHTML = valor.value;
+
+    function mostrarPrioritat(valor) {
+        range.innerHTML = valor;
+    }
+    
+    
+</script>
+
 </body>
 </html>
