@@ -33,7 +33,7 @@
             <form>
                 <div class="card my-5">
                     <div class="card-header bg-success-subtle">
-                        <h3>Registre d'actuacions </h3>
+                        <h3>Informe d'incidència</h3>
                     </div>
                     <div class="card-body">
                     <div class="row my-3">
@@ -71,6 +71,7 @@
                 if(!$actuaciones) { ?>
                     <p class="blockquote my-5">No existeix cap actuació amb aquest ID!</p>
                     <?php } else { ?>
+                    <h3>Registre d'actuacions</h3>
                     <table class="table">
                         <thead>
                             <tr>

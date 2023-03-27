@@ -35,7 +35,7 @@ $departaments = $resultat->fetch_all(MYSQLI_ASSOC);
             </div>
             <div>
                 <label for="descripcio" class="form-label">Descripció</label>
-                <input class="form-select" id="descripcio" placeholder="Escriu la descripció aquí" type="text" required name="descripcio">
+                <textarea class="form-control" id="descripcio" rows="3" placeholder="Escriu la descripció aquí" name="descripcio" required></textarea>
                 <div class="invalid-feedback">
                     Emplena el camp
                 </div>
