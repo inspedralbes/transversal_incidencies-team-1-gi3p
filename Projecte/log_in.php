@@ -1,7 +1,7 @@
 <?php
 // Initialize the session
 session_start();
- 
+
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: index.php");
@@ -35,6 +35,7 @@ if(isset($usuari)) {
                 $permisos = $comprovarUsuari["permisos"];
                 $_SESSION["permisos"] = $permisos;
                 $_SESSION["nom"] = $usuari;
+                $_SESSION["loggedin"] = true;
                 
                 header("Location: index.php");
             }else{
@@ -68,8 +69,7 @@ if(isset($usuari)) {
 </head>
 <body class="text-center">
 <?php include("header.php")?>
-    <main class="form-signin w-100 m-auto">
-      
+    <main class="form-signin w-100 m-auto my-5">
         <img class="mb-4" src="https://www.iconpacks.net/icons/1/free-user-login-icon-305-thumb.png" alt="" width="110" height="100">
         <h1 class="h3 mb-3 fw-normal">Inici de sessió</h1>
         <h2><?php echo $login_err4 ?></h2>
