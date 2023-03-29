@@ -2,16 +2,28 @@ Subir al GITHUB
 - Modificar incidencia OK
 - insertar incidencia OK
 - gestionar incidencia tecnic OK
-
-
-Julie: modificar incidencia --> input no variables y poner colores a los campos no variables OK
-       Descripcions cambiar a un textaria de 3 lineas OK
-       gestionar incidencia tecnic: que ponga información de incidencia OK       
+- consultar incidencia OK
+- consum departaments
+- informer tècnics
+- insertar BDD
+- header OK
+- perfil administrador OK
+- llistat incidencies grid
 
 EXTRA: 
+    - Mejora visula poner leyenda de colores en el listado de incidencias
     - Mejorar selects
     - informe tecnics 
     - consum per departaments poner graficos
     - inici ver incidencia abiertas (formato cartas)
     - registrarse como profesor
     - poder ver tus incidencias como profesor registrado
+
+
+Extra estilos:
+    - https://bootswatch.com
+
+NOTA:
+DROP DATABASE IF EXISTS `incidencies`;
+CREATE DATABASE `incidencies` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `incidencies`;
