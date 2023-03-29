@@ -18,6 +18,7 @@ $resultatTipus = $mysqli->query("SELECT idTipo, nom FROM TIPOLOGIA");
 $tipus = $resultatTipus->fetch_all(MYSQLI_ASSOC);
 ?>
 
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -37,10 +38,11 @@ $tipus = $resultatTipus->fetch_all(MYSQLI_ASSOC);
         <form action="update.php" method="POST" class="row g-3">
             <input type="hidden" name="id" value="<?php echo $incidencia["idInc"]?>">
 
-            <span class="input-group-text text-center" name="aula" id="aula" value="<?php echo $incidencia["aula"]?>"> <strong>Departament: &#160;</strong><?php echo $incidencia["aula"]?></span>
+            <div class="row mx-auto my-4">
+                <span class="col mx-1 input-group-text bg-success-subtle" name="aula" id="aula" value="<?php echo $incidencia["aula"]?>"> <strong>Departament: &#160;</strong><?php echo $incidencia["aula"]?></span>
+                <span class="col mx-1 input-group-text bg-success-subtle" name="aula" id="aula" value="<?php echo $incidencia["descripcio"]?>"> <strong>Descripció: &#160;</strong><?php echo $incidencia["descripcio"]?></span>
+            </div>
             
-            <span class="input-group-text text-center" name="aula" id="aula" value="<?php echo $incidencia["descripcio"]?>"> <strong>Descripció: &#160;</strong><?php echo $incidencia["descripcio"]?></span>
-
             <label class="form-label">Tècnic</label>
             <div class="btn-group">
                 <?php foreach ($tecnics as $untecnic) {
@@ -53,22 +55,24 @@ $tipus = $resultatTipus->fetch_all(MYSQLI_ASSOC);
                 }?>
             </div>
 
-            <label class="form-label">Prioritat: <span id="valorPrioritat"></span></label>
-            <input class="form-range" type="range" name="prioritat" id="prioritat" min="1" max="4" value="<?php if(isset($incidencia["prioritat"])) { echo $incidencia["prioritat"]; }else { echo "0";}?>" onchange="mostrarPrioritat(this.value)" oninput="mostrarPrioritat(this.value)">
+            <div>
+                <label class="form-label">Prioritat: <span id="valorPrioritat"></span></label>
+                <input class="form-range" type="range" name="prioritat" id="prioritat" min="1" max="4" value="<?php if(isset($incidencia["prioritat"])) { echo $incidencia["prioritat"]; }else { echo "0";}?>" onchange="mostrarPrioritat(this.value)" oninput="mostrarPrioritat(this.value)">
+            </div>
+           
             <label class="form-label">Tipologia</label>
                 <div class="btn-group">
                     <?php foreach ($tipus as $untipus) {
-                        
                             ?>
                             <input class="btn-check" type="radio" name="tipus" id="<?php echo $untipus["nom"]?>" value="<?php echo $untipus["idTipo"]?>" <?php if($untipus["idTipo"] == $incidencia["tipologia"]){ echo "checked";}?>>
                             <label class="btn btn-outline-primary" for="<?php echo $untipus["nom"]?>">
                             <?php echo $untipus["nom"]?>
                             </label>
-
-
                     <?php } ?>
                 </div>
+            
             <input class="btn btn-primary" type="submit" value="Guardar">
+            
         </form>
     </div>
 </div>
