@@ -8,11 +8,12 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     exit;
 }
 
-$login_err4 = "";
+$login_err = "";
 
-$usuari = $_POST["username"];
 
-if(isset($usuari)) {
+
+if(isset($_POST["username"])) {
+    $usuari = $_POST["username"];
 
     $contrasenya = $_POST["password"];
     
@@ -39,20 +40,15 @@ if(isset($usuari)) {
                 
                 header("Location: index.php");
             }else{
-                $login_err4 = "Contrasenya equivocada";
+                $login_err = "Usuari o contrasenya equivocats";
             }
         }
         else{
-            $login_err4 = "Usuari inexistent";
+            $login_err = "Usuari inexistent";
             $usuari = "";
         }
     }
-}else{
-
 }
-
-
-
 
 ?>
 
@@ -69,13 +65,13 @@ if(isset($usuari)) {
 <body class="text-center">
 <?php include("header.php")?>
     <main class="form-signin w-100 m-auto my-5">
-        <img class="mb-4" src="https://www.iconpacks.net/icons/1/free-user-login-icon-305-thumb.png" alt="" width="110" height="100">
+        <img class="mb-4 my-5 " src="https://www.iconpacks.net/icons/1/free-user-login-icon-305-thumb.png" alt="" width="110" height="100">
         <h1 class="h3 mb-3 fw-normal">Inici de sessió</h1>
-        <h2><?php echo $login_err4 ?></h2>
-        <form class="px-4 py-5 my-5 text-center" action="log_in.php" method="POST">
+        <h4 class="text-danger"><?php echo $login_err ?></h4>
+        <form class="px-4 py-5 mb-5 text-center needs-validation" action="log_in.php" method="POST" novalidate>
             <div class="col-lg-6 mx-auto">
                 <div class="form-floating my-2">
-                    <input type="text" name="username" id="floatingInput" class="form-control" placeholder="Usuari" value="<?php echo $usuari?>" required>
+                    <input type="text" name="username" id="floatingInput" class="form-control" placeholder="Usuari" required>
                     <label for="floatingInput">Usuari</label>
                     <div class="invalid-feedback">
                         Insereix un usuari
