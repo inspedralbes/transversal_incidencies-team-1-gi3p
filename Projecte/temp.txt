@@ -22,6 +22,7 @@ EXTRA:
 
 Extra estilos:
     - https://bootswatch.com
+    - https://bootswatch.com/journal/
 
 NOTA:
 DROP DATABASE IF EXISTS `incidencies`;
