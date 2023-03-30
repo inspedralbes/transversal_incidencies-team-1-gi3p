@@ -26,14 +26,14 @@ $departaments = $resultat->fetch_all(MYSQLI_ASSOC);
                     <tr>
                     <th class="table-warning" scope="col">Nom Dept.</th>
                     <th class="table-warning" scope="col">Temps</th>
-                    <th class="table-warning" scope="col">Nombre D'incidències</th>
+                    <th class="table-warning" scope="col">Nombre d'Incidències</th>
                     </tr>
                 </thead>
                 <?php foreach ($departaments as $unDepartament) { ?>
                 <tbody>
                     <tr>
                     <th scope="row"><?php echo $unDepartament["nom"] ?></th>
-                    <td><?php echo $unDepartament["temps"] ?></td>
+                    <td><?php echo $unDepartament["temps"] ?> minuts</td>
                     <td><?php echo $unDepartament["numInc"] ?></td>
                     </tr>
                 </tbody>
