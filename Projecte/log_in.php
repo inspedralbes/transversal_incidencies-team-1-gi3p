@@ -39,13 +39,12 @@ if(isset($usuari)) {
                 
                 header("Location: index.php");
             }else{
-                $username_err = " ";
-                $password_err = " ";
-                $login_err4 = "Usuari o contrasenya equivocats";
+                $login_err4 = "Contrasenya equivocada";
             }
         }
         else{
             $login_err4 = "Usuari inexistent";
+            $usuari = "";
         }
     }
 }else{
@@ -74,23 +73,43 @@ if(isset($usuari)) {
         <h1 class="h3 mb-3 fw-normal">Inici de sessió</h1>
         <h2><?php echo $login_err4 ?></h2>
         <form class="px-4 py-5 my-5 text-center" action="log_in.php" method="POST">
-            <h2><span class="invalid-feedback"><?php echo $password_err; ?></span></h2>
-            <h2><span class="invalid-feedback"><?php echo $username_err; ?></span></h2>
             <div class="col-lg-6 mx-auto">
                 <div class="form-floating my-2">
-                <input type="text" name="username" id="floatingInput" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>"placeholder="Usuari">
-                <label for="floatingInput">Usuari</label>
-                
+                    <input type="text" name="username" id="floatingInput" class="form-control" placeholder="Usuari" value="<?php echo $usuari?>" required>
+                    <label for="floatingInput">Usuari</label>
+                    <div class="invalid-feedback">
+                        Insereix un usuari
+                    </div>
                 </div>
+
                 <div class="form-floating my-2">
-                <input type="password" id="floatingPassword" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password">
-                <label for="floatingPassword">Contrasenya</label>
-                
+                    <input type="password" id="floatingPassword" name="password" class="form-control" placeholder="Password" required>
+                    <label for="floatingPassword">Contrasenya</label>
+                    <div class="invalid-feedback">
+                        Insereix una contrasenya
+                    </div>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Accedir</button>
             </div>
         </form>
     </main>
 <?php include("footer.php")?>
+
+<script>
+    (() => {
+        let form = document.querySelector(".needs-validation")
+        console.log(form)
+
+        form.addEventListener("submit", e => {
+            if(!form.checkValidity()) {
+                e.preventDefault()
+                e.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+        }, false)
+    })()
+</script>
+
 </body>
 </html>
