@@ -1,3 +1,55 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000000;
+    padding: 0 40px;
+    height: 75px;
+}
+
+header a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.header-title {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.header-list {
+    display: flex;
+    gap: 20px;
+}
+
+.header-list a {
+    color: #eb6864;
+}
+
+/* FOOTER */
+footer {
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 60px;
+    width: 100%;
+}
+
+footer a {
+    text-decoration: none;
+    color: #777;
+}
+
 
 /*CONTENIDO*/
 .container {
@@ -40,9 +92,22 @@ h3{
     border-radius: 5px;
 }
 
-.editar:nth-child(even) {
-    background-color: rgb(226, 224, 224);
+.prioritat1 {
+    background-color: #d9f99d;
 }
+
+.prioritat2 {
+    background-color: #fef08a;
+}
+
+.prioritat3 {
+    background-color: #fed7aa;
+}
+
+.prioritat4 {
+    background-color: #fecaca;
+}
+
 
 .id {
     grid-area: id;
@@ -72,6 +137,8 @@ h3{
         margin-right: auto;
         width: 80%;
         padding: 15px;
+        margin-bottom: 100px;
+        margin-top: 50px;
     }
     .titulos, .incidencia {
         display: grid;
@@ -91,13 +158,14 @@ h3{
         background-color: rgb(90, 90, 90);
         color: white;    
         position: sticky;
-        top: 5px;
+        top: 0px;
     }
     h3{
         margin: 5px;
     }
     .incidencia {
         border-radius: 0px;
+        padding: 10px;
     }
     .incidencia:hover{
         background-color: rgb(255, 238, 226);

@@ -32,17 +32,20 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
         <h1 class="display-5 fw-bold py-5">G1 GI3Pedralbes</h1>
         <h2>Incidències de cada departament</h2>
 
-        <?php foreach($resultat as $unDepartament){ ?>
-            <div class="card" style="width: 18rem;">
-                <img src="./imatges/<?php echo $unDepartament['idDept'] ?>.jpg" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $unDepartament['nom'] ?></h5>
-                    <p class="card-text"><?php echo $unDepartament['incidenciasObertes'] ?>/<?php echo $unDepartament['incidenciasTotals'] ?></p>
+        <div class="container text-center">
+            <div class="row row-col-1 row-cols-md-2 g-4 my-5">
+            <?php foreach($resultat as $unDepartament){ ?>
+                <div class="card my-2 col-lg-6 mx-auto" style="width: 18rem;">
+                    <img src="./imatges/<?php echo $unDepartament['idDept'] ?>.jpg" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $unDepartament['nom'] ?></h5>
+                        <p class="card-text"><?php echo $unDepartament['incidenciasObertes'] ?>/<?php echo $unDepartament['incidenciasTotals'] ?></p>
+                    </div>
                 </div>
+            <?php } ?>
             </div>
+        </div>
 
-
-        <?php } ?>
         <a href="insertar_incidencia.php" class="btn btn-primary btn-lg px-4">Insertar incidència</a>
         <a href="consultar_incidencia.php" class="btn btn-primary btn-lg px-4">Consultar incidencia per ID</a>
     </div>

@@ -12,11 +12,8 @@
     <header>
         <div class="header-title"><a href="/">Gestió Incidències</a></div>
         <div class="header-list">
-            <div><a href="/">Inici</a></div>
-            <div><a href="perfil_professor.php">Professors</a></div>
-            <div><a href="perfil_administrador.php.php">Administradors</a></div>
-            <div><a href="llistat_tecnics.php">Tècnics</a></div>
-            <div><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">FAQs</a></div>
+            <div><a href="index.php">Tancar Sessió</a></div>
+            <div><a href="index.php">Inici</a></div>
         </div>
     </header>
 
@@ -51,10 +48,8 @@
     
     <footer>
         <a href="index.php">Inici</a>
-        <a href="perfil_professor.php">Professors</a>
-        <a href="perfil_administrador.php">Administradors</a>
-        <a href="llistat_tecnics.php">Tecnics</a>
-        <a href="#">About</a>
+        <a href="insertar_incidencia.php">Insertar Incidència</a>
+        <a href="consultar_incidencia.php">Consultar Incidència</a>
     </footer>
 </body>
 </html>
