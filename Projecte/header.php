@@ -10,10 +10,10 @@
                     
     if($_SESSION["permisos"] == 1){ ?>
             <li class="nav-item"><a href="log_out.php" class="nav-link active bg-danger text-white" aria-current="page">Tancar sessió</a></li>
-            <li class="nav-item"><a href="perfil_administrador.php" class="nav-link">Inici</a></li>
+            <li class="nav-item"><a href="perfil_administrador.php" class="nav-link text-white">Inici</a></li>
             
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Opcions 
               </a>
               <ul class="dropdown-menu">
@@ -25,16 +25,16 @@
 
 
     <?php } else if($_SESSION["permisos"] == 2){ ?>
-          <li class="nav-item"><a href="log_out.php" class="nav-link active bg-danger text-white" aria-current="page">Tancar sessió</a></li>
-          <li class="nav-item"><a href="llistat_tecnics.php" class="nav-link">Insertar incidència</a></li>
+          <li class="nav-item"><a href="log_out.php" class="nav-link active bg-danger" aria-current="page">Tancar sessió</a></li>
+          <li class="nav-item"><a href="llistat_tecnics.php" class="nav-link text-white">Insertar incidència</a></li>
 
                 
     <?php }
     } else { ?>
-            <li class="nav-item"><a href="log_in.php" class="nav-link active btn-primary text-white" aria-current="page">Iniciar sessió</a></li>
-            <li class="nav-item"><a href="index.php" class="nav-link">Inici</a></li>
-            <li class="nav-item"><a href="insertar_incidencia.php" class="nav-link">Insertar incidència</a></li>
-            <li class="nav-item"><a href="consultar_incidencia.php" class="nav-link ">Consultar incidència</a></li>
+            <li class="nav-item"><a href="log_in.php" class="nav-link active btn-primary" aria-current="page">Iniciar sessió</a></li>
+            <li class="nav-item"><a href="index.php" class="nav-link text-white">Inici</a></li>
+            <li class="nav-item"><a href="insertar_incidencia.php" class="nav-link text-white">Insertar incidència</a></li>
+            <li class="nav-item"><a href="consultar_incidencia.php" class="nav-link text-white">Consultar incidència</a></li>
   <?php }
       ?>
 </ul>
