@@ -28,7 +28,7 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
 </head>
 <body class="h-100">
 <?php include("header.php")?>
-    <div class="px-4 py-5 my-5 text-center">
+    <div class="p-5 text-center" style="margin: 3rem 10rem">
         <h1 class="display-5 fw-bold py-5">G1 GI3Pedralbes</h1>
         <h2>Incidències de cada departament</h2>
 
