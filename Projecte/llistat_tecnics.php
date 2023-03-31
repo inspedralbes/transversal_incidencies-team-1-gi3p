@@ -16,43 +16,48 @@ $nomTecnic = $_SESSION["nom"];
     <title>GI3Pedralbes</title>
 </head>
 <body>
+
 <?php include("header.php");
 
 $mysqli = include_once "connexio.php";
 $resultat = $mysqli->query("SELECT idTecn, nom FROM TECNIC WHERE nom = '$nomTecnic'");
 $untecnic = $resultat->fetch_assoc();
+$idTecnic = $untecnic["idTecn"];
+
+$agafarIncidencies = $mysqli->query("SELECT idInc, descripcio, aula, prioritat FROM INCIDENCIA WHERE tecnic = $idTecnic AND dataFi IS NULL");
+$incidencies = $agafarIncidencies->fetch_all(MYSQLI_ASSOC);
 
 ?>
 
 <div class="px-4 py-5 my-5 text-center">
-  <h1 class="display-5 fw-bold py-5">Llistat Tècnics</h1>
-  <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $untecnic["idTecn"] ?>" aria-expanded="false" aria-controls="collapseOne">
-            <?php echo $untecnic["nom"] ?>
-          </button>
+  <h1 class="display-5 fw-bold py-5">Benvingut Tècnic (<?php echo $untecnic["nom"] ?>)!</h1>
         </h2>
-        <div id="<?php echo $untecnic["idTecn"] ?>" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <?php 
-                $idTecnic = $untecnic["idTecn"];
-
-                $agafarIncidencies = $mysqli->query("SELECT idInc, descripcio, aula, prioritat FROM INCIDENCIA WHERE tecnic = $idTecnic AND dataFi IS NULL");
-                $incidencies = $agafarIncidencies->fetch_all(MYSQLI_ASSOC);
-
-                ?>
-                <div class="list-group">
-                <?php foreach ($incidencies as $unaIncidencia) { ?>
-                    <a href="gestionar_incidencia_tecnic.php?id=<?php echo $unaIncidencia["idInc"]?>" class="list-group-item list-group-item-action " aria-current="true">
-                    <?php printf("%s  %s  %d",$unaIncidencia["aula"],$unaIncidencia["descripcio"],$unaIncidencia["prioritat"])?>
-                    </a>
+        <div id="<?php echo $untecnic["idTecn"] ?>">
+            <div class="col-lg-8 mx-auto text-center">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Departamnet</th>
+                      <th scope="col">Descripció</th>
+                      <th scope="col">Prioritat</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach ($incidencies as $unaIncidencia) { ?>            
+                      <a href="gestionar_incidencia_tecnic.php?id=<?php echo $unaIncidencia["idInc"]?>">
+                        <tr>
+                          <th scope="row"><?php echo $unaIncidencia["idInc"] ?></th>
+                          <td><?php echo $unaIncidencia["aula"] ?></td>
+                          <td><?php echo $unaIncidencia["descripcio"] ?></td>
+                          <td><?php echo $unaIncidencia["prioritat"] ?></td>
+                        </tr>
+                      </a>
                     <?php } ?>
-                </div>
+                  </tbody>
+              </table>
             </div>
         </div>
-      </div>
-  </div>
 </div>
 
 <?php include("footer.php")?>
