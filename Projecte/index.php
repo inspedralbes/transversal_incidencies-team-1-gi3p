@@ -35,7 +35,7 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
         <div class="container text-center">
             <div class="row row-col-1 row-cols-md-2 g-4 my-5">
             <?php foreach($resultat as $unDepartament){ ?>
-                <div class="card my-2 col-lg-6 mx-auto" style="width: 18rem;">
+                <div class="card my-2 col-lg-6 mx-auto" style="width: 18rem;padding: 0;">
                     <img src="./imatges/<?php echo $unDepartament['idDept'] ?>.jpg" class="card-img-top" alt="">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $unDepartament['nom'] ?></h5>
