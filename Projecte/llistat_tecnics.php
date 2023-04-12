@@ -1,11 +1,8 @@
 <?php session_start();
-
-$nomTecnic = $_SESSION["nom"];
-
-
+  $nomTecnic = $_SESSION["nom"];
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
@@ -16,50 +13,68 @@ $nomTecnic = $_SESSION["nom"];
     <title>GI3Pedralbes</title>
 </head>
 <body>
-
 <?php include("header.php");
 
 $mysqli = include_once "connexio.php";
 $resultat = $mysqli->query("SELECT idTecn, nom FROM TECNIC WHERE nom = '$nomTecnic'");
 $untecnic = $resultat->fetch_assoc();
 $idTecnic = $untecnic["idTecn"];
-
-$agafarIncidencies = $mysqli->query("SELECT idInc, descripcio, aula, prioritat FROM INCIDENCIA WHERE tecnic = $idTecnic AND dataFi IS NULL");
+$agafarIncidencies = $mysqli->query("SELECT idInc, descripcio, DEPARTAMENT.nom as aula, prioritat FROM INCIDENCIA JOIN DEPARTAMENT ON DEPARTAMENT.idDept = INCIDENCIA.aula WHERE tecnic = $idTecnic AND dataFi IS NULL ORDER BY prioritat DESC;");
 $incidencies = $agafarIncidencies->fetch_all(MYSQLI_ASSOC);
 
 ?>
 
 <div class="px-4 py-5 my-5 text-center">
   <h1 class="display-5 fw-bold py-5">Benvingut Tècnic (<?php echo $untecnic["nom"] ?>)!</h1>
-        </h2>
         <div id="<?php echo $untecnic["idTecn"] ?>">
-            <div class="col-lg-8 mx-auto text-center">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Departamnet</th>
-                      <th scope="col">Descripció</th>
-                      <th scope="col">Prioritat</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach ($incidencies as $unaIncidencia) { ?>            
-                      <a href="gestionar_incidencia_tecnic.php?id=<?php echo $unaIncidencia["idInc"]?>">
-                        <tr>
-                          <th scope="row"><?php echo $unaIncidencia["idInc"] ?></th>
-                          <td><?php echo $unaIncidencia["aula"] ?></td>
-                          <td><?php echo $unaIncidencia["descripcio"] ?></td>
-                          <td><?php echo $unaIncidencia["prioritat"] ?></td>
-                        </tr>
-                      </a>
-                    <?php } ?>
-                  </tbody>
-              </table>
+            <div class="col-lg-8 mx-auto text-center container border border-primary-subtle" style="border-collapse: collapse">
+                  <div class="row border border-dark py-3">
+                    <div class="col"><h5>#</h5></div>
+                    <div class="col"><h5>Departament</h5></div>
+                    <div class="col-6"><h5>Descripció</h5></div>
+                    <div class="col"><h5>Prioritat</h5></div>
+                  </div>
+                    <?php foreach ($incidencies as $unaIncidencia) { 
+                      if ($unaIncidencia["prioritat"] == 1) {
+                        ?><a style="text-decoration: none; color: black; " href="gestionar_incidencia_tecnic.php?id=<?php echo $unaIncidencia["idInc"]?>">
+                          <div class="row border border-primary-subtle py-3" style="background-color: #d9f99d">
+                            <div class="col"><?php echo $unaIncidencia["idInc"] ?></div>
+                            <div class="col"><?php echo $unaIncidencia["aula"] ?></div>
+                            <div class="col-6"><?php echo $unaIncidencia["descripcio"] ?></div>
+                            <div class="col">Baixa</div>
+                          </div>
+                        </a><?php     
+                      } else if ($unaIncidencia["prioritat"] == 2) {
+                        ?><a style="text-decoration: none; color: black; " href="gestionar_incidencia_tecnic.php?id=<?php echo $unaIncidencia["idInc"]?>">
+                          <div class="row border border-primary-subtle py-3" style="background-color: #fef08a">
+                            <div class="col"><?php echo $unaIncidencia["idInc"] ?></div>
+                            <div class="col"><?php echo $unaIncidencia["aula"] ?></div>
+                            <div class="col-6"><?php echo $unaIncidencia["descripcio"] ?></div>
+                            <div class="col">Mitja</div>
+                          </div>
+                        </a><?php
+                      } else if ($unaIncidencia["prioritat"] == 3) {
+                        ?><a style="text-decoration: none; color: black" href="gestionar_incidencia_tecnic.php?id=<?php echo $unaIncidencia["idInc"]?>">
+                          <div class="row border border-primary-subtle py-3" style="background-color: #fed7aa">
+                            <div class="col"><?php echo $unaIncidencia["idInc"] ?></div>
+                            <div class="col"><?php echo $unaIncidencia["aula"] ?></div>
+                            <div class="col-6"><?php echo $unaIncidencia["descripcio"] ?></div>
+                            <div class="col">Alta</div>
+                          </div>
+                        </a><?php
+                      } else if ($unaIncidencia["prioritat"] == 4) {
+                        ?><a style="text-decoration: none; color: black" href="gestionar_incidencia_tecnic.php?id=<?php echo $unaIncidencia["idInc"]?>">
+                          <div class="row border border-primary-subtle py-3" style="background-color: #fecaca">
+                            <div class="col"><?php echo $unaIncidencia["idInc"] ?></div>
+                            <div class="col"><?php echo $unaIncidencia["aula"] ?></div>
+                            <div class="col-6"><?php echo $unaIncidencia["descripcio"] ?></div>
+                            <div class="col">Urgent</div>
+                          </div>
+                        </a><?php
+                      } }?>
             </div>
         </div>
 </div>
-
 <?php include("footer.php")?>
 </body>
 </html>
