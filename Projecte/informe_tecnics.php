@@ -45,7 +45,15 @@ $tecnics = $resultat->fetch_all(MYSQLI_ASSOC);
                 <?php foreach ($incidencies as $unaIncidencia) { ?>
                       <div class="row my-2">
                         <div class="col"><?php echo $unaIncidencia["descripcio"]?></div>
-                        <div class="col"><?php echo $unaIncidencia["prioritat"]?></div>
+                        <?php if ($unaIncidencia["prioritat"] == 1) {
+                            ?><div class="col" style="background-color: #d9f99d"><?php echo $unaIncidencia["prioritat"]?></div><?php
+                        } else if ($unaIncidencia["prioritat"] == 2) {
+                            ?><div class="col" style="background-color: #fef08a"><?php echo $unaIncidencia["prioritat"]?></div><?php
+                        } else if ($unaIncidencia["prioritat"] == 3) {
+                            ?><div class="col" style="background-color: #fed7aa"><?php echo $unaIncidencia["prioritat"]?></div><?php
+                        } else if ($unaIncidencia["prioritat"] == 4) {
+                            ?><div class="col" style="background-color: #fecaca"><?php echo $unaIncidencia["prioritat"]?></div><?php
+                        } ?>
                         <div class="col"><?php echo $unaIncidencia["DATA"]?></div>   
                         <div class="col"><?php 
                           if(!$unaIncidencia["temps"]) {
