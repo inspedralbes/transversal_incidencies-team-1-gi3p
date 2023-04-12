@@ -1,7 +1,7 @@
 <?php
 $mysqli = include_once "connexio.php";
 $id = $_GET["id"];
-$sentencia = $mysqli->prepare("SELECT idInc, aula, descripcio, dataIni, tecnic, tipologia, prioritat FROM INCIDENCIA WHERE idInc = ?");
+$sentencia = $mysqli->prepare("SELECT idInc, DEPARTAMENT.nom, descripcio, dataIni, tecnic, tipologia, prioritat FROM INCIDENCIA JOIN DEPARTAMENT ON DEPARTAMENT.IdDept = INCIDENCIA.aula WHERE idInc = ?");
 $sentencia->bind_param("i", $id);
 $sentencia->execute();
 $resultado = $sentencia->get_result();
@@ -39,8 +39,8 @@ $tipus = $resultatTipus->fetch_all(MYSQLI_ASSOC);
             <input type="hidden" name="id" value="<?php echo $incidencia["idInc"]?>">
 
             <div class="row mx-auto my-4">
-                <span class="col mx-1 input-group-text bg-success-subtle" name="aula" id="aula" value="<?php echo $incidencia["aula"]?>"> <strong>Departament: &#160;</strong><?php echo $incidencia["aula"]?></span>
-                <span class="col mx-1 input-group-text bg-success-subtle" name="aula" id="aula" value="<?php echo $incidencia["descripcio"]?>"> <strong>Descripció: &#160;</strong><?php echo $incidencia["descripcio"]?></span>
+                <span class="col mx-1 input-group-text bg-success-subtle" name="aula" id="aula" value="<?php echo $incidencia["nom"]?>"> <strong>Departament: &#160;</strong><?php echo $incidencia["nom"]?></span>
+                <span class="col mx-1 input-group-text bg-success-subtle" name="desc" id="desc" value="<?php echo $incidencia["descripcio"]?>"> <strong>Descripció: &#160;</strong><?php echo $incidencia["descripcio"]?></span>
             </div>
             
             <label class="form-label">Tècnic</label>
