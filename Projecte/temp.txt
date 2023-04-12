@@ -1,21 +1,14 @@
 Subir al GITHUB
-- Modificar incidencia OK
-- insertar incidencia OK
-- gestionar incidencia tecnic OK
-- consultar incidencia OK
-- consum departaments
-- informer tècnics
-- insertar BDD
-- header OK
-- perfil administrador OK
-- llistat incidencies grid
+- ?
 
 EXTRA: 
+    - Mejora perfil tecnic no pone inici sino insertar icidencia arreglar fallo
     - Mejora visula poner leyenda de colores en el listado de incidencias
     - Mejorar selects
-    - informe tecnics 
-    - consum per departaments poner graficos
-    - inici ver incidencia abiertas (formato cartas)
+                - Consultar incidencia select departaments
+                - Gestionar incidencia tecnic departaments
+    - Confirmar al cerrar incidencia
+    - consum per departaments poner grafico
     - registrarse como profesor
     - poder ver tus incidencias como profesor registrado
 
