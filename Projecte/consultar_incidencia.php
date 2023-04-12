@@ -14,7 +14,7 @@
             $mysqli = include "connexio.php";
             if(isset($_GET["id"])) {
                 $id = $_GET["id"];
-                $sentencia = $mysqli->prepare("SELECT * FROM INCIDENCIA WHERE idInc = ?");
+                $sentencia = $mysqli->prepare("SELECT IdInc, descripcio, dataIni, DEPARTAMENT.nom, tecnic, tipologia, dataFI, prioritat FROM INCIDENCIA JOIN DEPARTAMENT ON DEPARTAMENT.IdDept = INCIDENCIA.aula WHERE idInc = ?");
                 $sentencia->bind_param("i", $id);
                 $sentencia->execute();
                 $resultado = $sentencia->get_result();
@@ -57,7 +57,7 @@
                                 <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" class="form-control text-center" value="Departament: <?php echo $incidencia["aula"]?>" disabled >
+                                        <input type="text" class="form-control text-center" value="Departament: <?php echo $incidencia["nom"]?>" disabled >
                                     </div>
                                     <div class="col">
                                         <?php
