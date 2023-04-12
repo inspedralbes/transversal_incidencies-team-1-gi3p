@@ -26,7 +26,7 @@
 
     <?php } else if($_SESSION["permisos"] == 2){ ?>
           <li class="nav-item"><a href="log_out.php" class="nav-link active bg-danger" aria-current="page">Tancar sessió</a></li>
-          <li class="nav-item"><a href="llistat_tecnics.php" class="nav-link text-white">Insertar incidència</a></li>
+          <li class="nav-item"><a href="llistat_tecnics.php" class="nav-link text-white">Inici</a></li>
 
                 
     <?php }
