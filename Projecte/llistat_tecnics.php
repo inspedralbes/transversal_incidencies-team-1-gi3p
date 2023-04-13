@@ -26,6 +26,7 @@ $incidencies = $agafarIncidencies->fetch_all(MYSQLI_ASSOC);
 
 <div class="px-4 py-5 my-5 text-center">
   <h1 class="display-5 fw-bold py-5">Benvingut Tècnic (<?php echo $untecnic["nom"] ?>)!</h1>
+      <img src="https://imgs.search.brave.com/FeeCUGRofhiTx2GyaiG3M7RTzpvpxxrAZW5arlSb39o/rs:fit:474:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC52/SW5ENmUtRk9EUk5p/QVYwNmIzTE5BSGFI/YSZwaWQ9QXBp" class="rounded mx-auto d-block my-4" hight="150" width="150">
         <div id="<?php echo $untecnic["idTecn"] ?>">
             <div class="col-lg-8 mx-auto text-center container border border-primary-subtle" style="border-collapse: collapse">
                   <div class="row border border-dark py-3">

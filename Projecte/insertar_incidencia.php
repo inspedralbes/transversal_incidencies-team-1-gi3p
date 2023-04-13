@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php $mysqli = include_once "connexio.php";
 
 $resultat = $mysqli->query("SELECT idDept, nom FROM DEPARTAMENT");
