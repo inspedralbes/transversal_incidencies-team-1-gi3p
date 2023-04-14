@@ -4,8 +4,6 @@ $err = "";
 if(isset($_POST["usuari"])){
     $usuari = $_POST["usuari"];
 
-
-
     $mysqli = include "connexio.php";
     $sentencia = $mysqli->prepare("SELECT contrasenya, permisos FROM USUARI WHERE usuari = ?");
     $sentencia->bind_param("s", $usuari);
@@ -23,6 +21,7 @@ if(isset($_POST["usuari"])){
 
         $_SESSION["permisos"] = 3;
         $_SESSION["nom"] = $usuari;
+        $_SESSION["idUsu"] = $mysqli->insert_id;
 
         header("Location: index.php");
         
@@ -52,11 +51,11 @@ if(isset($_POST["usuari"])){
     <h2><?php echo $err?></h2>
     <div class="px-4 py-5 mb-5 text-center">
         <form id="registrar" action="register.php" method="POST">
-            <p>Usuari</p>
+            <p>Crea el teu nom d'usuari</p>
             <input type="text" name="usuari" id="usuari" required>
-            <p>Contrasenya</p>
+            <p>Afegeix una contrasenya</p>
             <input type="password" name="contrasenya" id="contrasenya" required>
-            <p>Confirmar contrasenya</p>
+            <p>Confirma la contrasenya</p>
             <input type="password" name="confirmarContrasenya" id="confirmarContrasenya" required>
             <p id="valid"></p>       
         </form>
@@ -68,16 +67,24 @@ if(isset($_POST["usuari"])){
 </html>
 
 <script> 
-function contrasenyaValida() {
-  
+function contrasenyaValida() {  
     const contra1 = document.getElementById("contrasenya").value;
     const contra2 = document.getElementById("confirmarContrasenya").value;
 
-    if(contra1 == contra2) {
-        document.getElementById("registrar").submit();
+    if(document.getElementById("usuari").value.length >= 5){
+        if(contra1.length >= 5){
+            if(contra1 == contra2) {
+                document.getElementById("registrar").submit();
+            }else {
+                document.getElementById("valid").textContent="La contrasenya no coincideix";
+            }
+        }else {
+            document.getElementById("valid").textContent="La contrasenya ha de mesurar com a mínim 5 caràcters";
+        }
     }else {
-        document.getElementById("valid").textContent="La contrasenya no coincideix";
+        document.getElementById("valid").textContent="L'usuari i la contrasenya han de mesurar com a mínim 5 caràcters";
     }
+    
     
 }
 

@@ -65,7 +65,7 @@ if(isset($_POST["username"])) {
 <body class="text-center">
 <?php include("header.php")?>
     <main class="form-signin w-100 m-auto my-5">
-        <img class="mb-4 my-5 " src="https://www.iconpacks.net/icons/1/free-user-login-icon-305-thumb.png" alt="" width="110" height="100">
+        <img class="mb-4 my-5 " src="https://www.iconpacks.net/icons/1/free-user-login-icon-305-thumb.png" width="110" height="100">
         <h1 class="h3 mb-3 fw-normal">Inici de sessió</h1>
         <h4 class="text-danger"><?php echo $login_err ?></h4>
         <form class="px-4 py-5 mb-5 text-center needs-validation" action="log_in.php" method="POST" novalidate>
