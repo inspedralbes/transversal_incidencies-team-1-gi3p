@@ -7,6 +7,8 @@ if(isset($_SESSION["permisos"])){
     }else if($_SESSION["permisos"] == 2){
         header("Location: llistat_tecnics.php");
         
+    }else if($_SESSION["permisos"] == 3){
+        header("Location: perfil_professor.php");
     }
 }
 
@@ -46,8 +48,8 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
 
-        <a href="insertar_incidencia.php" class="btn btn-primary btn-lg px-4">Insertar incidència</a>
-        <a href="consultar_incidencia.php" class="btn btn-primary btn-lg px-4">Consultar incidencia per ID</a>
+        <a href="insertar_incidencia.php" class="btn btn-primary btn-lg px-4 mx-2 my-2">Insertar incidència</a>
+        <a href="consultar_incidencia.php" class="btn btn-primary btn-lg px-4 mx-2 my-2">Consultar incidencia per ID</a>
     </div>
 <?php include("footer.php")?>
 </body>
