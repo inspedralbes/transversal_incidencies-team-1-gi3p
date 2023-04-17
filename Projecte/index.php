@@ -63,7 +63,7 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
                 foreach ($agafarIncidencies as $unaIncidencia) { 
                 
                     ?><a style="text-decoration: none; color: black; " href="consultar_incidencia.php?id=<?php echo $unaIncidencia["idInc"]?>">
-                        <div class="row border border-primary-subtle py-3" style="background-color: #d9f99d">
+                        <div class="row border border-primary-subtle py-3">
                         <div class="col"><?php echo $unaIncidencia["idInc"] ?></div>
                         <div class="col"><?php echo $unaIncidencia["aula"] ?></div>
                         <div class="col-6"><?php echo $unaIncidencia["descripcio"] ?></div>
