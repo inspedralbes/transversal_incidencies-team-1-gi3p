@@ -14,6 +14,8 @@
 $mysqli = include_once "connexio.php";
 $resultat = $mysqli->query("SELECT nom, temps, numInc FROM consumDepartaments");
 $departaments = $resultat->fetch_all(MYSQLI_ASSOC);
+$tempsArray = array();
+$deptsArray = array();
 ?>
 
 <div class="px-4 py-5 my-5 mx-5 text-center">   
@@ -29,7 +31,9 @@ $departaments = $resultat->fetch_all(MYSQLI_ASSOC);
                     <th class="table-warning" scope="col">Nombre d'Incidències</th>
                     </tr>
                 </thead>
-                <?php foreach ($departaments as $unDepartament) { ?>
+                <?php foreach ($departaments as $unDepartament) { 
+                    $tempsArray[] = $unDepartament["temps"];
+                    $deptsArray[] = $unDepartament["nom"];?>
                 <tbody>
                     <tr>
                     <th scope="row"><?php echo $unDepartament["nom"] ?></th>
@@ -41,6 +45,9 @@ $departaments = $resultat->fetch_all(MYSQLI_ASSOC);
                 </table>
             </div>
         </div>
+        <div class="mt-4">
+            <canvas id="myChart"></canvas>
+        </div>
         <div class="my-5">
         <a href="perfil_administrador.php" class="btn btn-outline-primary">Tornar al menú</a>
         </div>
@@ -48,5 +55,30 @@ $departaments = $resultat->fetch_all(MYSQLI_ASSOC);
 </div>
 
 <?php include("footer.php")?>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: <?php echo json_encode($deptsArray); ?>,
+      datasets: [{
+        label: 'Minuts',
+        data: <?php echo json_encode($tempsArray); ?>,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
 </body>
 </html>
