@@ -45,6 +45,41 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
             <?php } ?>
             </div>
         </div>
+        
+        <?php 
+        if(isset($_SESSION['idUsu'])){
+            $professor = $_SESSION['idUsu'];
+
+            $agafarIncidencies = $mysqli->query("SELECT idInc, descripcio, DEPARTAMENT.nom as aula, prioritat FROM INCIDENCIA JOIN DEPARTAMENT ON DEPARTAMENT.idDept = INCIDENCIA.aula WHERE professor = $professor AND dataFi IS NULL ORDER BY prioritat DESC;"); 
+            if(!empty($agafarIncidencies)){?>
+                <div class="col-lg-8 mx-auto text-center container border border-primary-subtle" style="border-collapse: collapse">
+                  <div class="row border border-dark py-3">
+                    <div class="col"><h5>#</h5></div>
+                    <div class="col"><h5>Departament</h5></div>
+                    <div class="col-6"><h5>Descripció</h5></div>
+                    <div class="col"><h5>Prioritat</h5></div>
+                  </div>
+                  <?php
+                foreach ($agafarIncidencies as $unaIncidencia) { 
+                
+                    ?><a style="text-decoration: none; color: black; " href="consultar_incidencia.php?id=<?php echo $unaIncidencia["idInc"]?>">
+                        <div class="row border border-primary-subtle py-3" style="background-color: #d9f99d">
+                        <div class="col"><?php echo $unaIncidencia["idInc"] ?></div>
+                        <div class="col"><?php echo $unaIncidencia["aula"] ?></div>
+                        <div class="col-6"><?php echo $unaIncidencia["descripcio"] ?></div>
+                        <div class="col"><?php echo empty($unaIncidencia["prioritat"])?"NaN":$unaIncidencia["prioritat"] ?></div>
+                        </div>
+                    </a><?php     
+                }?>
+                </div>
+                <?php
+            }else{
+                echo "<h2>No tens cap incidència oberta!</h2>";
+            }
+            
+    
+        }?>
+        
 
         <a href="insertar_incidencia.php" class="btn btn-primary btn-lg px-4">Insertar incidència</a>
         <a href="consultar_incidencia.php" class="btn btn-primary btn-lg px-4">Consultar incidencia per ID</a>

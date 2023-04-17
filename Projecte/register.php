@@ -24,6 +24,7 @@ if(isset($_POST["usuari"])){
 
         $_SESSION["permisos"] = 3;
         $_SESSION["nom"] = $usuari;
+        $_SESSION["idUsu"] = $mysqli->insert_id;
 
         header("Location: index.php");
         
@@ -43,7 +44,6 @@ if(isset($_POST["usuari"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include("includes.php")?>
     <title>Document</title>
-    <form action=""></form>
 </head>
 <body>
     <h1>Registrar-se</h1>
@@ -71,12 +71,20 @@ function contrasenyaValida() {
   
     const contra1 = document.getElementById("contrasenya").value;
     const contra2 = document.getElementById("confirmarContrasenya").value;
-
-    if(contra1 == contra2) {
-        document.getElementById("registrar").submit();
+    if(document.getElementById("usuari").value.length > 5){
+        if(contra1.length > 5){
+            if(contra1 == contra2) {
+                document.getElementById("registrar").submit();
+            }else {
+                document.getElementById("valid").textContent="La contrasenya no coincideix";
+            }
+        }else {
+            document.getElementById("valid").textContent="L'usuari i la contrasenya han de mesurar com a mínim 5 caràcters";
+        }
     }else {
-        document.getElementById("valid").textContent="La contrasenya no coincideix";
+        document.getElementById("valid").textContent="L'usuari i la contrasenya han de mesurar com a mínim 5 caràcters";
     }
+    
     
 }
 

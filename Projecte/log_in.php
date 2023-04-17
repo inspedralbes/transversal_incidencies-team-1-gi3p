@@ -23,7 +23,7 @@ if(isset($_POST["username"])) {
     $sentencia->bind_param("s", $usuari);
     $resultat = $sentencia->execute();*/
 
-    if($resultat = $mysqli->query("SELECT contrasenya, permisos FROM USUARI WHERE usuari = '$usuari'")){
+    if($resultat = $mysqli->query("SELECT contrasenya, permisos, idUsu FROM USUARI WHERE usuari = '$usuari'")){
         $comprovarUsuari = $resultat->fetch_assoc();
 
         
@@ -36,6 +36,7 @@ if(isset($_POST["username"])) {
                 $permisos = $comprovarUsuari["permisos"];
                 $_SESSION["permisos"] = $permisos;
                 $_SESSION["nom"] = $usuari;
+                $_SESSION["idUsu"] = $comprovarUsuari["idUsu"];
                 $_SESSION["loggedin"] = true;
                 
                 header("Location: index.php");
