@@ -80,5 +80,6 @@ $deptsArray = array();
     }
   });
 </script>
+
 </body>
 </html>
