@@ -1,6 +1,6 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +14,7 @@
             $mysqli = include "connexio.php";
             if(isset($_GET["id"])) {
                 $id = $_GET["id"];
-                $sentencia = $mysqli->prepare("SELECT IdInc, descripcio, dataIni, DEPARTAMENT.nom, tecnic, tipologia, dataFI, prioritat FROM INCIDENCIA JOIN DEPARTAMENT ON DEPARTAMENT.IdDept = INCIDENCIA.aula WHERE idInc = ?");
+                $sentencia = $mysqli->prepare("SELECT IdInc, descripcio, DATE(dataIni) as dataIni, DEPARTAMENT.nom, tecnic, tipologia, dataFI, prioritat FROM INCIDENCIA JOIN DEPARTAMENT ON DEPARTAMENT.IdDept = INCIDENCIA.aula WHERE idInc = ?");
                 $sentencia->bind_param("i", $id);
                 $sentencia->execute();
                 $resultado = $sentencia->get_result();

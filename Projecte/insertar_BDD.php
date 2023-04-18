@@ -1,20 +1,10 @@
 <?php
-$host = "localhost";
-$usuario = "a22arnfergil_gi3pgrup1";
-$contrasenia = "InsPedralbes2022";
-$base_de_datos = "a22arnfergil_gi3pgrup1";
-$mysqli = new mysqli($host, $usuario, $contrasenia, $base_de_datos);
-if ($mysqli->connect_errno) {
-    echo "Falló la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-}
-
+$mysqli = include "connexio.php";
+session_start();
 $aula = $_POST["aula"];
 $descripcio = $_POST["descripcio"];
-$sentencia = $mysqli->prepare("INSERT INTO INCIDENCIA
-(aula, descripcio)
-VALUES
-(?, ?)");
-$sentencia->bind_param("ss", $aula, $descripcio);
+$sentencia = $mysqli->prepare("INSERT INTO INCIDENCIA (aula, descripcio, professor) VALUES (?, ?, ?)");
+$sentencia->bind_param("ssi", $aula, $descripcio, $_SESSION["idUsu"]);
 $sentencia->execute();
 ?>
 

@@ -6,9 +6,6 @@ if(isset($_SESSION["permisos"])){
 
     }else if($_SESSION["permisos"] == 2){
         header("Location: llistat_tecnics.php");
-        
-    }else if($_SESSION["permisos"] == 3){
-        header("Location: perfil_professor.php");
     }
 }
 
@@ -19,7 +16,7 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,6 +44,37 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
             <?php } ?>
             </div>
         </div>
+
+        <?php 
+            if (isset($_SESSION['idUsu'])) {
+                $professor = $_SESSION['idUsu'];
+                $agafarIncidencies = $mysqli->query("SELECT idInc, descripcio, DEPARTAMENT.nom as aula, prioritat FROM INCIDENCIA JOIN DEPARTAMENT ON DEPARTAMENT.idDept = INCIDENCIA.aula WHERE professor = $professor AND dataFi IS NULL ORDER BY prioritat DESC;"); 
+                if (!empty($agafarIncidencies)) {?>
+                    <div class="col-lg-8 mx-auto text-center container border border-primary-subtle" style="border-collapse: collapse">
+                        <div class="row border border-dark py-3">
+                            <div class="col"><h5>#</h5></div>
+                            <div class="col"><h5>Departament</h5></div>
+                            <div class="col-6"><h5>Descripció</h5></div>
+                            <div class="col"><h5>Prioritat</h5></div>
+                        </div>
+                        <?php
+                    foreach ($agafarIncidencies as $unaIncidencia) { 
+                        ?><a style="text-decoration: none; color: black; " href="consultar_incidencia.php?id=<?php echo $unaIncidencia["idInc"]?>">
+                            <div class="row border border-primary-subtle py-3">
+                                <div class="col"><?php echo $unaIncidencia["idInc"] ?></div>
+                                <div class="col"><?php echo $unaIncidencia["aula"] ?></div>
+                                <div class="col-6"><?php echo $unaIncidencia["descripcio"] ?></div>
+                                <div class="col"><?php echo empty($unaIncidencia["prioritat"])?"NaN":$unaIncidencia["prioritat"] ?></div>
+                            </div>
+                        </a><?php     
+                    }?>
+                    </div>
+                    <?php
+                } else {
+                    echo "<h2>No tens cap incidència oberta!</h2>";
+                }                
+            }
+        ?>
 
         <a href="insertar_incidencia.php" class="btn btn-primary btn-lg px-4 mx-2 my-2">Insertar incidència</a>
         <a href="consultar_incidencia.php" class="btn btn-primary btn-lg px-4 mx-2 my-2">Consultar incidencia per ID</a>

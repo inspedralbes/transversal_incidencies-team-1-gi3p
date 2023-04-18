@@ -34,18 +34,16 @@ if(isset($_POST["usuari"])){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="insti icon" href="https://www.institutpedralbes.cat/wp-content/uploads/2021/05/logo.jpg">
     <?php include("includes.php")?>
-    <title>Document</title>
-    <form action=""></form>
+    <title>GI3Pedralbes</title>
 </head>
 <body>
-
 <?php include("header.php")?>
     <h1>Registrar-se</h1>
     <h2><?php echo $err?></h2>
@@ -56,7 +54,7 @@ if(isset($_POST["usuari"])){
             <p>Afegeix una contrasenya</p>
             <input type="password" name="contrasenya" id="contrasenya" required>
             <p>Confirma la contrasenya</p>
-            <input type="password" name="confirmarContrasenya" id="confirmarContrasenya" required>
+            <input type="password" name="confirmarContrasenya" id="confirmarContrasenya" style="display: block;" required>
             <p id="valid"></p>       
         </form>
     </div>
@@ -67,34 +65,28 @@ if(isset($_POST["usuari"])){
 </html>
 
 <script> 
-function contrasenyaValida() {  
-    const contra1 = document.getElementById("contrasenya").value;
-    const contra2 = document.getElementById("confirmarContrasenya").value;
-
-    if(document.getElementById("usuari").value.length >= 5){
-        if(contra1.length >= 5){
-            if(contra1 == contra2) {
-                document.getElementById("registrar").submit();
+    function contrasenyaValida() {  
+        const contra1 = document.getElementById("contrasenya").value;
+        const contra2 = document.getElementById("confirmarContrasenya").value;
+        if(document.getElementById("usuari").value.length >= 5){
+            if(contra1.length >= 5){
+                if(contra1 == contra2) {
+                    document.getElementById("registrar").submit();
+                }else {
+                    document.getElementById("valid").textContent="La contrasenya no coincideix";
+                }
             }else {
-                document.getElementById("valid").textContent="La contrasenya no coincideix";
+                document.getElementById("valid").textContent="La contrasenya ha de mesurar com a mínim 5 caràcters";
             }
         }else {
-            document.getElementById("valid").textContent="La contrasenya ha de mesurar com a mínim 5 caràcters";
+            document.getElementById("valid").textContent="L'usuari i la contrasenya han de mesurar com a mínim 5 caràcters";
         }
-    }else {
-        document.getElementById("valid").textContent="L'usuari i la contrasenya han de mesurar com a mínim 5 caràcters";
     }
-    
-    
-}
-
-const submit = document.getElementById("submit");
-
-submit.addEventListener(
-    "click",
-    function () {
-        contrasenyaValida();
-    },
-    false);
-
+    const submit = document.getElementById("submit");
+    submit.addEventListener(
+        "click",
+        function () {
+            contrasenyaValida();
+        },
+        false);
 </script>

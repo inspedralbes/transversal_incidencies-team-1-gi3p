@@ -2,18 +2,26 @@
 Subir al GITHUB
 - ?
 
+Modificar ficheros;
+- BRANCH registrar
+        - register OK
+        - index OK
+        - insertar BDD OK
+        - listado incidencias profe ni putas
+
+- BRANCH main
+        - Consum per departaments OK
+
+- BRANCH millora-2-selects-i-alerta-borrar
+        - consultar_incidencia.php OK
+        - gestionar_incidencia_tecnic.php OK
+
+
+
 EXTRA: 
     - Mejora visula poner leyenda de colores en el listado de incidencias
-
-    - Mejorar selects
-                - modificar incidencia prioritat (Alta...)  
-                             
     - Confirmar al cerrar incidencia
-
-    - consum per departaments poner grafico
-    - registrarse como profesor
-    - poder ver tus incidencias como profesor registrado
-
+    - Preguntar que son las lineas (Grafico), proponer cambiar el oreden 
 
 Extra estilos:
     - https://bootswatch.com
