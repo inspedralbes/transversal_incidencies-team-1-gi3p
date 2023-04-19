@@ -35,7 +35,7 @@ $deptsArray = array();
                     </tr>
                 </thead>
                 <?php foreach ($departaments as $unDepartament) { 
-                    $tempsArray[] = $unDepartament["temps"];
+                    $tempsArray[] = !empty($unDepartament["temps"])?0:$unDepartament["temps"];
                     $deptsArray[] = $unDepartament["nom"];?>
                 <tbody>
                     <tr>

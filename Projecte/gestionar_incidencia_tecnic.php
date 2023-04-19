@@ -183,8 +183,9 @@
             if (desc.value.length >= 20 && temps.value != "" && parseInt(temps.value) > 0) {
                 document.actuacio.submit();
             }
-
-            function alertaTancar(){
+        } 
+        
+        function alertaTancar(){
                 Swal.fire({
                     title: 'Segur/a que vols tancar-la?',
                     text: "No ho pots revertir!",
