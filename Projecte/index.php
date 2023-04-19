@@ -53,32 +53,65 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
                 $agafarIncidencies->execute();
     
                 $resultat = $agafarIncidencies->get_result();
-                $incidencies = $resultat->fetch_all(MYSQLI_ASSOC);
+                $incidencies = $resultat->fetch_all(MYSQLI_ASSOC);?>
 
-                if (!empty($incidencies)) {?>
-                    <div class="col-lg-8 mx-auto text-center container border border-primary-subtle" style="border-collapse: collapse">
-                        <div class="row border border-dark py-3">
-                            <div class="col"><h5>#</h5></div>
-                            <div class="col"><h5>Departament</h5></div>
-                            <div class="col-6"><h5>Descripció</h5></div>
-                            <div class="col"><h5>Prioritat</h5></div>
-                        </div>
-                        <?php
-                    foreach ($incidencies as $unaIncidencia) { 
-                        ?><a style="text-decoration: none; color: black; " href="consultar_incidencia.php?id=<?php echo $unaIncidencia["idInc"]?>">
-                            <div class="row border border-primary-subtle py-3">
-                                <div class="col"><?php echo $unaIncidencia["idInc"] ?></div>
-                                <div class="col"><?php echo $unaIncidencia["aula"] ?></div>
-                                <div class="col-6"><?php echo $unaIncidencia["descripcio"] ?></div>
-                                <div class="col"><?php echo empty($unaIncidencia["prioritat"])?"NaN":$unaIncidencia["prioritat"] ?></div>
+                
+
+                <?php if (!empty($incidencies)) {?>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#taulaProfessor" aria-expanded="false" aria-controls="collapseOne">
+                            <?php echo "Les meves incidències" ?>
+                        </button>
+                        </h2>
+                        <div id="taulaProfessor" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="list-group">
+                                    <div class="row my-2">
+                                        <div class="col"><strong>#</strong></div>
+                                        <div class="col"><strong>Departament</strong></div>
+                                        <div class="col"><strong>Descripció</strong></div>   
+                                        <div class="col"><strong>Prioritat</strong></div>        
+                                    </div>
+                                    <!--<div class="col-lg-8 mx-auto text-center container border border-primary-subtle" style="border-collapse: collapse">-->
+                                    <?php
+                                    foreach ($incidencies as $unaIncidencia) { 
+                                        ?>
+                                        <a style="text-decoration: none; color: black; " href="consultar_incidencia.php?id=<?php echo $unaIncidencia["idInc"]?>">
+                                            <div class="row my-2">
+                                                <div class="col"><p class="my-4"><?php echo $unaIncidencia["idInc"] ?></p></div>
+                                                <div class="col"><p class="my-4"><?php echo $unaIncidencia["aula"] ?></p></div>
+                                                <div class="col"><p class="my-4"><?php echo $unaIncidencia["descripcio"] ?></p></div>
+
+                                                <?php
+                                                if(empty($unaIncidencia["prioritat"])){
+                                                    ?><div class="col"><p class="my-4">No assignat</p></div><?php
+                                                } 
+                                                if ($unaIncidencia["prioritat"] == 1) {
+                                                    ?><div class="col" style="background-color: #d9f99d"><p class="my-4">Baixa</p></div><?php
+                                                } else if ($unaIncidencia["prioritat"] == 2) {
+                                                    ?><div class="col" style="background-color: #fef08a"><p class="my-4">Mitja</p></div><?php
+                                                } else if ($unaIncidencia["prioritat"] == 3) {
+                                                    ?><div class="col" style="background-color: #fed7aa"><p class="my-4">Alta</p></div><?php
+                                                } else if ($unaIncidencia["prioritat"] == 4) {
+                                                    ?><div class="col" style="background-color: #fecaca"><p class="my-4">Urgent</p></div><?php
+                                                } ?>
+                                            </div>
+                                        </a><?php     
+                                    }?>
+                                </div>
                             </div>
-                        </a><?php     
-                    }?>
+                        </div>
                     </div>
+                </div>
+                    </div> 
                     <?php
                 } else {
                     echo "<h2>No tens cap incidència oberta!</h2>";
-                }                
+                }  ?>
+            
+                <?php          
             }
         ?>
 
