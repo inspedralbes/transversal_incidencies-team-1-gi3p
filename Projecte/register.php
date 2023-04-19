@@ -57,28 +57,25 @@ if(isset($_POST["usuari"])){
               <form id="registrar" action="register.php" method="POST">
 
                 <div class="form-outline mb-4">
+                  <label class="form-label" for="usuari">Crea el teu nom d'usuari</label>
                   <input type="text" name="usuari" id="usuari" class="form-control form-control-lg" required/>
-                  <label class="form-label" for="form3Example1cg">Crea el teu nom d'usuari</label>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example3cg">Afegeix Email</label>
-                </div>
-
-                <div class="form-outline mb-4">
+                  <label class="form-label" for="contrasenya">Afegeix una contrasenya</label>
                   <input type="password" name="contrasenya" id="contrasenya" class="form-control form-control-lg" required />
-                  <label class="form-label" for="form3Example4cg">Afegeix una contrasenya</label>
                 </div>
 
                 <div class="form-outline mb-4">
+                  <label class="form-label" for="confirmarContrasenya">Confirma la contrasenya</label>
                   <input type="password" name="confirmarContrasenya" id="confirmarContrasenya" class="form-control form-control-lg" required/>
-                  <label class="form-label" for="form3Example4cdg">Confirma la contrasenya</label>
                 </div>
                 <p id="valid"></p>  
+                
               </form>
+
                 <div class="d-flex justify-content-center">
-                  <button type="button" id="submit"class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Registrar-se</button>
+                  <button type="button" id="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body-white">Registrar-se</button>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Ja tens un compte? <a href="log_in.php"
@@ -93,8 +90,6 @@ if(isset($_POST["usuari"])){
 </section>
 <?php include("footer.php")?>
 </body>
-</html>
-
 <script> 
     function contrasenyaValida() {  
         const contra1 = document.getElementById("contrasenya").value;
@@ -121,3 +116,6 @@ if(isset($_POST["usuari"])){
         },
         false);
 </script>
+</html>
+
+

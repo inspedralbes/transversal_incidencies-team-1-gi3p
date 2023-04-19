@@ -84,7 +84,7 @@
                             </div>
                             <?php
                                 if(!$actuacions) { ?>
-                                <p class="blockquote my-5">No existeix cap actuació amb aquest ID!</p>
+                                <p class="blockquote my-5">No existeix cap actuació per aquesta incidència!</p>
                                 <?php } else { ?>
                                     <h3>Informe d'actuacions</h3>
                                 <table class="table">
