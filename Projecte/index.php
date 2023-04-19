@@ -48,8 +48,14 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
         <?php 
             if (isset($_SESSION['idUsu'])) {
                 $professor = $_SESSION['idUsu'];
-                $agafarIncidencies = $mysqli->query("SELECT idInc, descripcio, DEPARTAMENT.nom as aula, prioritat FROM INCIDENCIA JOIN DEPARTAMENT ON DEPARTAMENT.idDept = INCIDENCIA.aula WHERE professor = $professor AND dataFi IS NULL ORDER BY prioritat DESC;"); 
-                if (!empty($agafarIncidencies)) {?>
+                $agafarIncidencies = $mysqli->prepare("SELECT idInc, descripcio, DEPARTAMENT.nom as aula, prioritat FROM INCIDENCIA JOIN DEPARTAMENT ON DEPARTAMENT.idDept = INCIDENCIA.aula WHERE professor = ? AND dataFi IS NULL ORDER BY prioritat DESC;"); 
+                $agafarIncidencies->bind_param("i", $professor);
+                $agafarIncidencies->execute();
+    
+                $resultat = $agafarIncidencies->get_result();
+                $incidencies = $resultat->fetch_all(MYSQLI_ASSOC);
+
+                if (!empty($incidencies)) {?>
                     <div class="col-lg-8 mx-auto text-center container border border-primary-subtle" style="border-collapse: collapse">
                         <div class="row border border-dark py-3">
                             <div class="col"><h5>#</h5></div>
@@ -58,7 +64,7 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
                             <div class="col"><h5>Prioritat</h5></div>
                         </div>
                         <?php
-                    foreach ($agafarIncidencies as $unaIncidencia) { 
+                    foreach ($incidencies as $unaIncidencia) { 
                         ?><a style="text-decoration: none; color: black; " href="consultar_incidencia.php?id=<?php echo $unaIncidencia["idInc"]?>">
                             <div class="row border border-primary-subtle py-3">
                                 <div class="col"><?php echo $unaIncidencia["idInc"] ?></div>

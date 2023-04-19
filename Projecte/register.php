@@ -29,8 +29,6 @@ if(isset($_POST["usuari"])){
         $err = "Aquest usuari ja existeix";
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -45,22 +43,55 @@ if(isset($_POST["usuari"])){
 </head>
 <body>
 <?php include("header.php")?>
-    <h1>Registrar-se</h1>
-    <h2><?php echo $err?></h2>
-    <div class="px-4 py-5 mb-5 text-center">
-        <form id="registrar" action="register.php" method="POST">
-            <p>Crea el teu nom d'usuari</p>
-            <input type="text" name="usuari" id="usuari" required>
-            <p>Afegeix una contrasenya</p>
-            <input type="password" name="contrasenya" id="contrasenya" required>
-            <p>Confirma la contrasenya</p>
-            <input type="password" name="confirmarContrasenya" id="confirmarContrasenya" style="display: block;" required>
-            <p id="valid"></p>       
-        </form>
+
+<section class="vh-100 bg-image"
+  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Crear un compte</h2>
+              <h4 class="text-uppercase text-center mb-5"><?php echo $err?></h4>
+              <form id="registrar" action="register.php" method="POST">
+
+                <div class="form-outline mb-4">
+                  <input type="text" name="usuari" id="usuari" class="form-control form-control-lg" required/>
+                  <label class="form-label" for="form3Example1cg">Crea el teu nom d'usuari</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
+                  <label class="form-label" for="form3Example3cg">Afegeix Email</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" name="contrasenya" id="contrasenya" class="form-control form-control-lg" required />
+                  <label class="form-label" for="form3Example4cg">Afegeix una contrasenya</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" name="confirmarContrasenya" id="confirmarContrasenya" class="form-control form-control-lg" required/>
+                  <label class="form-label" for="form3Example4cdg">Confirma la contrasenya</label>
+                </div>
+                <p id="valid"></p>  
+              </form>
+                <div class="d-flex justify-content-center">
+                  <button type="button" id="submit"class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Registrar-se</button>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0">Ja tens un compte? <a href="log_in.php"
+                    class="fw-bold text-body"><u>Accedeix aquí</u></a>
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="px-4 mb-5 text-center">
-        <button type="button" id="submit" class="btn btn-primary">Enviar</button>
-    </div>
+  </div>
+</section>
+<?php include("footer.php")?>
 </body>
 </html>
 
