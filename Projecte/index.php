@@ -38,7 +38,7 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
                     <img src="./imatges/<?php echo $unDepartament['idDept'] ?>.jpg" class="card-img-top" alt="">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $unDepartament['nom'] ?></h5>
-                        <p class="card-text"><strong><?php echo $unDepartament['incidenciasObertes'] ?></strong> obertes de <strong><?php echo $unDepartament['incidenciasTotals'] ?></strong> totals</p>
+                        <p class="card-text"><strong><?php echo $unDepartament['incidenciasObertes'] ?></strong> <?php echo ($unDepartament['incidenciasObertes'] == 1)?"oberta":"obertes" ?> de <strong><?php echo $unDepartament['incidenciasTotals'] ?></strong> <?php echo ($unDepartament['incidenciasTotals'] == 1)?"total":"totals" ?> </p>
                     </div>
                 </div>
             <?php } ?>
