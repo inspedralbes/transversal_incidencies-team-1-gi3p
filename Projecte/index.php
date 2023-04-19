@@ -62,7 +62,7 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#taulaProfessor" aria-expanded="false" aria-controls="collapseOne">
-                            <?php echo "Les meves incidències" ?>
+                            <h4><?php echo "Les meves incidències" ?></h4>
                         </button>
                         </h2>
                         <div id="taulaProfessor" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -114,9 +114,10 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
                 <?php          
             }
         ?>
-
-        <a href="insertar_incidencia.php" class="btn btn-primary btn-lg px-4 mx-2 my-2">Insertar incidència</a>
-        <a href="consultar_incidencia.php" class="btn btn-primary btn-lg px-4 mx-2 my-2">Consultar incidencia per ID</a>
+        <div class="px-4 py-2 my-5 mx-5 text-center">
+            <a href="insertar_incidencia.php" class="btn btn-primary btn-lg px-4 mx-2 my-2">Insertar incidència</a>
+            <a href="consultar_incidencia.php" class="btn btn-primary btn-lg px-4 mx-2 my-2">Consultar incidencia per ID</a>
+        </div>
     </div>
 <?php include("footer.php")?>
 </body>
