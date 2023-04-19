@@ -181,7 +181,7 @@
                 errorTemps.innerHTML = ""
             }
             if (desc.value.length >= 20 && temps.value != "" && parseInt(temps.value) > 0) {
-                document.actuacio.submit();
+                document.getElementById("nerModalForm").submit();
             }
 
             function alertaTancar(){
