@@ -21,7 +21,10 @@ $deptsArray = array();
 <div class="px-4 py-5 my-5 mx-5 text-center">   
     <h1 class="display-5 fw-bold py-5">Consum per departaments</h1>
     <div class="col-lg-6 mx-auto">
-        <div class="card">
+    <div class="mt-4">
+      <canvas id="myChart"></canvas>
+    </div>
+        <div class="card my-4">
             <div class="card-body">
                 <table class="table table-bordered border-warning my-0">
                 <thead>
@@ -44,10 +47,7 @@ $deptsArray = array();
                 <?php } ?>
                 </table>
             </div>
-        </div>
-        <div class="mt-4">
-            <canvas id="myChart"></canvas>
-        </div>
+        </div>        
         <div class="my-5">
         <a href="perfil_administrador.php" class="btn btn-outline-primary">Tornar al menú</a>
         </div>
@@ -80,5 +80,6 @@ $deptsArray = array();
     }
   });
 </script>
+
 </body>
 </html>

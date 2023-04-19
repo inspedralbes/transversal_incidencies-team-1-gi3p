@@ -25,7 +25,7 @@
                       <li class="nav-item"><a href="llistat_tecnics.php" class="nav-link text-white">Inici</a></li>
                 <?php } else if($_SESSION["permisos"] == 3){ ?>
                       <li class="nav-item"><a href="log_out.php" class="nav-link active bg-danger" aria-current="page">Tancar sessió</a></li>
-                      <li class="nav-item"><a href="perfil_professor.php" class="nav-link text-white">Inici</a></li>
+                      <li class="nav-item"><a href="index.php" class="nav-link text-white">Inici</a></li>
                       <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Opcions 

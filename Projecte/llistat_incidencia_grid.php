@@ -12,16 +12,23 @@
     <header>
         <div class="header-title"><a href="/">Gestió Incidències</a></div>
         <div class="header-list">
-            <div><a href="index.php">Tancar Sessió</a></div>
+            <div><a href="log_out.php">Tancar Sessió</a></div>
             <div><a href="index.php">Inici</a></div>
         </div>
     </header>
 
     <?php 
         $mysqli = include_once "connexio.php";
-        $resultat = $mysqli->query("SELECT idInc, aula, descripcio, DATE(dataIni) as dataIni, prioritat FROM INCIDENCIA WHERE dataFi IS NULL ORDER BY prioritat DESC");
+        $resultat = $mysqli->query("SELECT idInc, DEPARTAMENT.nom as aula, descripcio, DATE(dataIni) as dataIni, prioritat FROM INCIDENCIA JOIN DEPARTAMENT ON DEPARTAMENT.IdDept = INCIDENCIA.aula WHERE dataFi IS NULL ORDER BY prioritat DESC");
         $incidencies = $resultat->fetch_all(MYSQLI_ASSOC);
     ?>
+
+    <div class="llegenda">
+        <span><span class="prioritat-urgent">█</span>  Urgent</span>
+        <span><span class="prioritat-alta">█</span>  Alta</span>
+        <span><span class="prioritat-mitja">█</span>  Mitja</span>
+        <span><span class="prioritat-baixa">█</span>  Baixa</span>
+    </div>
 
     <div class="container">
         <div class="titulos">

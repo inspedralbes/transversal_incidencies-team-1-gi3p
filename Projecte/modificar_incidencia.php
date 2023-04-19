@@ -47,7 +47,7 @@ $tipus = $resultatTipus->fetch_all(MYSQLI_ASSOC);
             <div class="btn-group">
                 <?php foreach ($tecnics as $untecnic) {
                         ?>
-                        <input class="btn-check" type="radio" name="tecnic" id="<?php echo $untecnic["nom"]?>" value="<?php echo $untecnic["idTecn"]?>" <?php if($untecnic["idTecn"] == $incidencia["tecnic"]){ echo "checked";}?>>
+                        <input class="btn-check" type="radio" name="tecnic" id="<?php echo $untecnic["nom"]?>" value="<?php echo $untecnic["idTecn"]?>" <?php if($untecnic["idTecn"] == $incidencia["tecnic"]){ echo "checked";}?> required>
                         <label class="btn btn-outline-primary" for="<?php echo $untecnic["nom"]?>">
                         <?php echo $untecnic["nom"]?>
                         </label>
@@ -57,14 +57,14 @@ $tipus = $resultatTipus->fetch_all(MYSQLI_ASSOC);
 
             <div>
                 <label class="form-label">Prioritat: <span id="valorPrioritat"></span></label>
-                <input class="form-range" type="range" name="prioritat" id="prioritat" min="1" max="4" value="<?php if(isset($incidencia["prioritat"])) { echo $incidencia["prioritat"]; }else { echo "0";}?>" onchange="mostrarPrioritat(this.value)" oninput="mostrarPrioritat(this.value)">
+                <input class="form-range" type="range" name="prioritat" id="prioritat" min="1" max="4" value="<?php if(isset($incidencia["prioritat"])) { echo $incidencia["prioritat"]; }else { echo "0";}?>" onchange="mostrarPrioritat(this.value)" oninput="mostrarPrioritat(this.value)" required>
             </div>
            
             <label class="form-label">Tipologia</label>
                 <div class="btn-group">
                     <?php foreach ($tipus as $untipus) {
                             ?>
-                            <input class="btn-check" type="radio" name="tipus" id="<?php echo $untipus["nom"]?>" value="<?php echo $untipus["idTipo"]?>" <?php if($untipus["idTipo"] == $incidencia["tipologia"]){ echo "checked";}?>>
+                            <input class="btn-check" type="radio" name="tipus" id="<?php echo $untipus["nom"]?>" value="<?php echo $untipus["idTipo"]?>" <?php if($untipus["idTipo"] == $incidencia["tipologia"]){ echo "checked";}?> required>
                             <label class="btn btn-outline-primary" for="<?php echo $untipus["nom"]?>">
                             <?php echo $untipus["nom"]?>
                             </label>

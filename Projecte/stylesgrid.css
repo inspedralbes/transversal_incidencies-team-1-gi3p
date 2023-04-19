@@ -56,7 +56,7 @@ footer a {
     margin-left: auto;
     margin-right: auto;
     width: 80%;
-    padding-bottom: 15px;
+    padding: 15px 0;
 }
 
 .container a {
@@ -64,23 +64,32 @@ footer a {
     color: black;
 }
 
-.titulos, .incidencia {
+.titulos, .incidencia{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: 'id aula prioriedad fecha'
-                        'descripcion descripcion descripcion descripcion';
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 'id aula fecha'
+                        'descripcion descripcion descripcion';
     border-collapse: collapse;  
     border: 1px solid;
     text-align: center;
-    padding: 5px 10px 5px 10px;
+    padding: 10px;
     margin-bottom: 15px;
+    gap: 10px;
+}
+
+.llegenda {
+    width: 80%;
+    margin: 20px auto;
+    padding: 0 15px;
+    display: flex;
+    gap: 20px;
 }
 
 .titulos {
     font-size: 120%;
     background-color: rgb(90, 90, 90);
     color: white;    
-    position: sticky;
+    position: static;
     top: 5px;
 }
 
@@ -92,20 +101,34 @@ h3{
     border-radius: 5px;
 }
 
-.prioritat1 {
-    background-color: #d9f99d;
+/* COLORS */
+
+.prioritat-urgent {
+    color: #fecaca;
+}
+.prioritat4 {
+    background-color: #fecaca;
 }
 
-.prioritat2 {
-    background-color: #fef08a;
+.prioritat-alta {
+    color: #fed7aa;
 }
-
 .prioritat3 {
     background-color: #fed7aa;
 }
 
-.prioritat4 {
-    background-color: #fecaca;
+.prioritat-mitja {
+    color: #fef08a;
+}
+.prioritat2 {
+    background-color: #fef08a;
+}
+
+.prioritat-baixa {
+    color: #d9f99d;
+}
+.prioritat1 {
+    background-color: #d9f99d;
 }
 
 
@@ -133,17 +156,15 @@ h3{
 @media only screen and (min-width: 708px){
    
     .container {
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0 auto;
         width: 80%;
         padding: 15px;
         margin-bottom: 100px;
-        margin-top: 50px;
     }
     .titulos, .incidencia {
         display: grid;
-        grid-template-columns: 1fr 1fr 5fr 1fr 1fr;
-        grid-template-areas: 'id aula descripcion prioriedad fecha';
+        grid-template-columns: 1fr 1fr 5fr 1fr;
+        grid-template-areas: 'id aula descripcion fecha';
         border-bottom: 1px solid;
         border-collapse: collapse;
         border-top: 0px;
@@ -163,6 +184,7 @@ h3{
     h3{
         margin: 5px;
     }
+
     .incidencia {
         border-radius: 0px;
         padding: 10px;

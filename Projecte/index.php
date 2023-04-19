@@ -6,9 +6,6 @@ if(isset($_SESSION["permisos"])){
 
     }else if($_SESSION["permisos"] == 2){
         header("Location: llistat_tecnics.php");
-        
-    }else if($_SESSION["permisos"] == 3){
-        header("Location: perfil_professor.php");
     }
 }
 
@@ -19,7 +16,7 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,12 +38,82 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
                     <img src="./imatges/<?php echo $unDepartament['idDept'] ?>.jpg" class="card-img-top" alt="">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $unDepartament['nom'] ?></h5>
-                        <p class="card-text"><?php echo $unDepartament['incidenciasObertes'] ?>/<?php echo $unDepartament['incidenciasTotals'] ?></p>
+                        <p class="card-text"><strong><?php echo $unDepartament['incidenciasObertes'] ?></strong> <?php echo ($unDepartament['incidenciasObertes'] == 1)?"oberta":"obertes" ?> de <strong><?php echo $unDepartament['incidenciasTotals'] ?></strong> <?php echo ($unDepartament['incidenciasTotals'] == 1)?"total":"totals" ?> </p>
                     </div>
                 </div>
             <?php } ?>
             </div>
         </div>
+
+        <?php 
+            if (isset($_SESSION['idUsu'])) {
+                $professor = $_SESSION['idUsu'];
+                $agafarIncidencies = $mysqli->prepare("SELECT idInc, descripcio, DEPARTAMENT.nom as aula, prioritat FROM INCIDENCIA JOIN DEPARTAMENT ON DEPARTAMENT.idDept = INCIDENCIA.aula WHERE professor = ? AND dataFi IS NULL ORDER BY prioritat DESC;"); 
+                $agafarIncidencies->bind_param("i", $professor);
+                $agafarIncidencies->execute();
+    
+                $resultat = $agafarIncidencies->get_result();
+                $incidencies = $resultat->fetch_all(MYSQLI_ASSOC);?>
+
+                
+
+                <?php if (!empty($incidencies)) {?>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#taulaProfessor" aria-expanded="false" aria-controls="collapseOne">
+                            <?php echo "Les meves incidències" ?>
+                        </button>
+                        </h2>
+                        <div id="taulaProfessor" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="list-group">
+                                    <div class="row my-2">
+                                        <div class="col"><strong>#</strong></div>
+                                        <div class="col"><strong>Departament</strong></div>
+                                        <div class="col"><strong>Descripció</strong></div>   
+                                        <div class="col"><strong>Prioritat</strong></div>        
+                                    </div>
+                                    <!--<div class="col-lg-8 mx-auto text-center container border border-primary-subtle" style="border-collapse: collapse">-->
+                                    <?php
+                                    foreach ($incidencies as $unaIncidencia) { 
+                                        ?>
+                                        <a style="text-decoration: none; color: black; " href="consultar_incidencia.php?id=<?php echo $unaIncidencia["idInc"]?>">
+                                            <div class="row my-2">
+                                                <div class="col"><p class="my-4"><?php echo $unaIncidencia["idInc"] ?></p></div>
+                                                <div class="col"><p class="my-4"><?php echo $unaIncidencia["aula"] ?></p></div>
+                                                <div class="col"><p class="my-4"><?php echo $unaIncidencia["descripcio"] ?></p></div>
+
+                                                <?php
+                                                if(empty($unaIncidencia["prioritat"])){
+                                                    ?><div class="col"><p class="my-4">No assignat</p></div><?php
+                                                } 
+                                                if ($unaIncidencia["prioritat"] == 1) {
+                                                    ?><div class="col" style="background-color: #d9f99d"><p class="my-4">Baixa</p></div><?php
+                                                } else if ($unaIncidencia["prioritat"] == 2) {
+                                                    ?><div class="col" style="background-color: #fef08a"><p class="my-4">Mitja</p></div><?php
+                                                } else if ($unaIncidencia["prioritat"] == 3) {
+                                                    ?><div class="col" style="background-color: #fed7aa"><p class="my-4">Alta</p></div><?php
+                                                } else if ($unaIncidencia["prioritat"] == 4) {
+                                                    ?><div class="col" style="background-color: #fecaca"><p class="my-4">Urgent</p></div><?php
+                                                } ?>
+                                            </div>
+                                        </a><?php     
+                                    }?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </div> 
+                    <?php
+                } else {
+                    echo "<h2>No tens cap incidència oberta!</h2>";
+                }  ?>
+            
+                <?php          
+            }
+        ?>
 
         <a href="insertar_incidencia.php" class="btn btn-primary btn-lg px-4 mx-2 my-2">Insertar incidència</a>
         <a href="consultar_incidencia.php" class="btn btn-primary btn-lg px-4 mx-2 my-2">Consultar incidencia per ID</a>
