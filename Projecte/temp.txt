@@ -1,0 +1,33 @@
+
+Subir al GITHUB
+- ?
+
+EXTRA: 
+    - Mejora visula poner leyenda de colores en el listado de incidencias
+
+    - Mejorar selects
+                - modificar incidencia prioritat (Alta...)  
+                             
+    - Confirmar al cerrar incidencia
+
+    - consum per departaments poner grafico
+    - registrarse como profesor
+    - poder ver tus incidencias como profesor registrado
+
+
+Extra estilos:
+    - https://bootswatch.com
+    - https://bootswatch.com/journal/
+
+NOTA:
+DROP DATABASE IF EXISTS `incidencies`;
+CREATE DATABASE `incidencies` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `incidencies`;
+
+EVENT:
+UPDATE
+    INCIDENCIA
+SET
+    INCIDENCIA.prioritat = INCIDENCIA.prioritat + 1
+WHERE
+    INCIDENCIA.prioritat < 4 AND INCIDENCIA.prioritat IS NOT NULL AND DATEDIFF(NOW(), INCIDENCIA.dataIni) > 7;
