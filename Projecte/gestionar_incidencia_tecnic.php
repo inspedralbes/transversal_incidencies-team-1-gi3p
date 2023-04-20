@@ -107,7 +107,7 @@
                 <div class="row">
                     <div class="col">
                         <form action="tancar_incidencia_BBDD.php?id=<?php echo $id ?>" method="POST" id="borrar">
-                            <button type="submit" class="btn btn-success" onclick="alertaTancar()">Tancar Incidència</button>
+                            <button type="button" class="btn btn-success" onclick="alertaTancar()">Tancar Incidència</button>
                         </form>
                     </div>
                     <div class="col">

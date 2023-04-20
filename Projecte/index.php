@@ -28,8 +28,8 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
 <body class="h-100">
 <?php include("header.php")?>
     <div class="p-5 text-center" style="margin: 3rem 10rem">
-        <h1 class="display-5 fw-bold py-5">G1 GI3Pedralbes</h1>
-        <h2>Incidències de cada departament</h2>
+        <h1 class="display-5 fw-bold py-3">G1 GI3Pedralbes</h1>
+        <h2 class="py-2">Incidències de cada departament</h2>
 
         <div class="container text-center">
             <div class="row row-col-1 row-cols-md-2 g-4 my-5">
@@ -74,7 +74,7 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
                                         <div class="col"><strong>Descripció</strong></div>   
                                         <div class="col"><strong>Prioritat</strong></div>        
                                     </div>
-                                    <!--<div class="col-lg-8 mx-auto text-center container border border-primary-subtle" style="border-collapse: collapse">-->
+                                    
                                     <?php
                                     foreach ($incidencies as $unaIncidencia) { 
                                         ?>
@@ -114,7 +114,7 @@ $resultat = $sequencia->fetch_all(MYSQLI_ASSOC);
                 <?php          
             }
         ?>
-        <div class="px-4 py-2 my-5 mx-5 text-center">
+        <div class="px-4 py-5 my-5 mx-5 text-center">
             <a href="insertar_incidencia.php" class="btn btn-primary btn-lg px-4 mx-2 my-2">Insertar incidència</a>
             <a href="consultar_incidencia.php" class="btn btn-primary btn-lg px-4 mx-2 my-2">Consultar incidencia per ID</a>
         </div>
